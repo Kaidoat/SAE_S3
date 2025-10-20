@@ -139,111 +139,105 @@
     <h1>Devenir bénévole</h1>
 
 
-    <!-- === Formulaire complet bénévole === -->
     <section class="contact-section">
         <h2>Contacter le comité</h2>
-        <p class="small-note">Les champs marqués d’un * sont obligatoires.</p>
+        <p class="small-note">Le délai de réponse du comité peut être assez long en fonction du nombre de demandes à traiter. Merci pour votre compréhension.</p>
 
         <form id="benevoleForm" class="benevole-form" novalidate>
-            <div class="form-grid">
-                <!-- Informations personnelles -->
-                <div class="form-group">
-                    <label for="nom">Nom de famille *</label>
-                    <input type="text" id="nom" name="nom" required />
+            <div class="form-columns">
+
+                <!-- 🩷 Colonne gauche : infos personnelles -->
+                <div class="form-col gauche">
+                    <div class="form-group">
+                        <label for="nom">Nom de famille *</label>
+                        <input type="text" id="nom" name="nom" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adresse">Adresse Postale *</label>
+                        <textarea id="adresse" name="adresse" rows="2" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codePostal">Code postal *</label>
+                        <input type="text" id="codePostal" name="codePostal" required pattern="[0-9]{5}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ville">Ville *</label>
+                        <input type="text" id="ville" name="ville" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone">Téléphone *</label>
+                        <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateNaissance">Date de naissance (jj/mm/aaaa) *</label>
+                        <input type="date" id="dateNaissance" name="dateNaissance" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="etat">Vous êtes *</label>
+                        <select id="etat" name="etat" required>
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="etudiant">Étudiant(e)</option>
+                            <option value="actif">Actif(ve)</option>
+                            <option value="retraite">Retraité(e)</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                        <input type="text" id="autreEtat" name="autreEtat" placeholder="Précisez..." style="display:none;margin-top:5px;">
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="prenom">Prénom *</label>
-                    <input type="text" id="prenom" name="prenom" required />
-                </div>
+                <!-- 💬 Colonne droite : questions -->
+                <div class="form-col droite">
+                    <fieldset>
+                        <legend>Expérience auprès des malades ou personnes âgées ? *</legend>
+                        <label><input type="radio" name="experience" value="oui" required> Oui</label><br>
+                        <label><input type="radio" name="experience" value="non"> Non</label>
+                    </fieldset>
 
-                <div class="form-group">
-                    <label for="dateNaissance">Date de naissance *</label>
-                    <input type="date" id="dateNaissance" name="dateNaissance" required />
-                </div>
+                    <fieldset>
+                        <legend>Compétences particulières</legend>
+                        <label><input type="checkbox" name="competences" value="ecoute"> écoute</label><br>
+                        <label><input type="checkbox" name="competences" value="manuelle"> activité manuelle</label><br>
+                        <label><input type="checkbox" name="competences" value="animation"> animation</label>
+                    </fieldset>
 
-                <div class="form-group">
-                    <label for="etat">Statut *</label>
-                    <select id="etat" name="etat" required>
-                        <option value="">-- Sélectionnez --</option>
-                        <option value="etudiant">Étudiant(e)</option>
-                        <option value="actif">Actif(ve)</option>
-                        <option value="retraite">Retraité(e)</option>
-                        <option value="autre">Autre</option>
-                    </select>
-                </div>
+                    <fieldset>
+                        <legend>Disponibilité une demi-journée par semaine ? *</legend>
+                        <label><input type="radio" name="demi_journee" value="oui" required> Oui</label><br>
+                        <label><input type="radio" name="demi_journee" value="non"> Non</label>
+                    </fieldset>
 
-                <div class="form-group full-width">
-                    <label for="adresse">Adresse *</label>
-                    <input type="text" id="adresse" name="adresse" required />
-                </div>
+                    <fieldset>
+                        <legend>Disponibilité une soirée par semaine ? *</legend>
+                        <label><input type="radio" name="soiree" value="oui" required> Oui</label><br>
+                        <label><input type="radio" name="soiree" value="non"> Non</label>
+                    </fieldset>
 
-                <div class="form-group">
-                    <label for="codePostal">Code postal *</label>
-                    <input type="text" id="codePostal" name="codePostal" required pattern="[0-9]{5}" />
-                </div>
+                    <div class="form-group full-width">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="3"></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="ville">Ville *</label>
-                    <input type="text" id="ville" name="ville" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="telephone">Téléphone *</label>
-                    <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00" />
-                </div>
-
-                <div class="form-group">
-                    <label for="email">E-mail *</label>
-                    <input type="email" id="email" name="email" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="comite">Comité sélectionné *</label>
-                    <input type="text" id="comite" name="comite" required />
                 </div>
             </div>
 
-            <!-- Expérience -->
-            <fieldset>
-                <legend>Expérience auprès des malades ou personnes âgées ? *</legend>
-                <label><input type="radio" name="experience" value="oui" required> Oui</label><br>
-                <label><input type="radio" name="experience" value="non"> Non</label>
-            </fieldset>
-
-            <!-- Compétences -->
-            <fieldset>
-                <legend>Compétences particulières</legend>
-                <label><input type="checkbox" name="competences" value="ecoute"> A l'écoute</label><br>
-                <label><input type="checkbox" name="competences" value="manuelle"> Activité manuelle</label><br>
-                <label><input type="checkbox" name="competences" value="animation"> Animation</label>
-            </fieldset>
-
-            <!-- Disponibilités -->
-            <fieldset>
-                <legend>Disponibilité une demi-journée par semaine ? *</legend>
-                <label><input type="radio" name="demi_journee" value="oui" required> Oui</label><br>
-                <label><input type="radio" name="demi_journee" value="non"> Non</label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Disponibilité une soirée par semaine ? *</legend>
-                <label><input type="radio" name="soiree" value="oui" required> Oui</label><br>
-                <label><input type="radio" name="soiree" value="non"> Non</label>
-            </fieldset>
-
-            <!-- Message -->
-            <div class="form-group full-width">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div>
-
-            <!-- reCAPTCHA -->
-            <div class="form-group full-width" style="margin-top: 1rem;">
-                <div class="g-recaptcha" data-sitekey="VOTRE_CLE_SITE_RECAPTCHA"></div>
-            </div>
-
-    <div class="form-actions">
+            <!-- 📨 Bouton en bas centré -->
+            <div class="form-actions">
                 <button type="submit" class="btn-submit">ENVOYER</button>
             </div>
         </form>
