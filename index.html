@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Association — Accueil</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="img/logo_sans_fond.png">
 </head>
 <body id="top">
 <!-- Lien d’évitement -->
@@ -133,10 +134,152 @@
     </nav>
 </header>
 
-<main id="contenu" class="container">
-    <p style="margin:2rem 0;color:#777">Contenu de la page d'accueil… (à remplacer)</p>
-</main>
+<<main id="contenu">
 
+    <!-- ================== ENCARt / TAGLINE ================== -->
+    <section class="section-pad dots-bg">
+        <div class="container">
+            <div class="tagline" role="note" aria-label="Présentation">
+                Depuis 80 ans, 4&nbsp;400 bénévoles apportent joie et réconfort aux enfants,
+                adultes hospitalisés et aux personnes âgées.
+            </div>
+        </div>
+    </section>
+
+    <!-- ================== GRANDE PHOTO ================== -->
+    <section class="section-pad dots-bg">
+        <div class="container hero-photo">
+            <!-- remplace group.jpg par ta vraie image -->
+            <img src="group.jpg" alt="Bénévoles réunis en blouse rose lors d’un événement" loading="lazy">
+        </div>
+    </section>
+
+    <!-- ================== BLOCS ALTERNÉS (image/texte) ================== -->
+    <section class="section-pad dots-bg" aria-label="Présentation détaillée">
+        <div class="container zigzag">
+
+            <!-- Bloc 1 : image gauche / texte droite -->
+            <article class="zig">
+                <figure class="zig-media">
+                    <img src="action1.jpg" alt="Atelier avec enfant hospitalisé" loading="lazy">
+                </figure>
+                <div class="zig-text">
+                    <p>
+                        <strong>Les Blouses Roses et Les Blousons Roses</strong> interviennent principalement
+                        auprès des <strong>enfants hospitalisés</strong> et des <strong>personnes âgées</strong> en EHPAD.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Bloc 2 : image droite / texte gauche -->
+            <article class="zig">
+                <figure class="zig-media">
+                    <img src="action2.jpg" alt="Échange avec une personne âgée en établissement" loading="lazy">
+                </figure>
+                <div class="zig-text">
+                    <p>
+                        Ils écoutent, réconfortent, distraient les malades et apportent de la joie dans un
+                        quotidien de <strong>solitude</strong> ou de <strong>soins</strong>.
+                    </p>
+                    <p>
+                        Ils agissent aussi auprès des <strong>personnes en situation de handicap</strong>
+                        (enfants, adolescents et adultes), en <strong>hôpital</strong> comme dans les
+                        <strong>établissements et services spécialisés</strong> (IME, IEM, MAS, FAM, ESAT, foyers…).
+                    </p>
+                </div>
+            </article>
+
+            <!-- Bloc 3 : image gauche / texte droite -->
+            <article class="zig">
+                <figure class="zig-media">
+                    <img src="team.jpg" alt="Groupe de bénévoles des Blouses Roses" loading="lazy">
+                </figure>
+                <div class="zig-text">
+                    <p>
+                        L’Association a besoin de <strong>bénévoles</strong>, mais aussi de <strong>fonds</strong> et
+                        d’<strong>entreprises partenaires</strong> pour développer ses actions. L’engagement est
+                        <strong>ouvert à toutes et à tous</strong> dès <strong>18 ans</strong>, selon les
+                        disponibilités et les talents de chacun.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ================== NOS ACTIONS ================== -->
+    <section id="actions" class="section-pad dots-bg" aria-labelledby="actions-title">
+        <div class="container">
+            <h2 id="actions-title" class="section-title">Nos actions</h2>
+
+            <ul class="actions-list" role="list">
+                <li class="action-item">
+                    <h3>Enfants hospitalisés</h3>
+                    <p>Ateliers de jeu, de lecture et de créativité pour redonner le sourire pendant l’hospitalisation.</p>
+                </li>
+                <li class="action-item">
+                    <h3>Adultes hospitalisés</h3>
+                    <p>Écoute, présence et activités légères pour rompre l’isolement et adoucir le quotidien.</p>
+                </li>
+                <li class="action-item">
+                    <h3>Personnes âgées (EHPAD)</h3>
+                    <p>Moments de convivialité et de mémoire partagée pour stimuler et rassurer les résident·e·s.</p>
+                </li>
+                <li class="action-item">
+                    <h3>Personnes en situation de handicap</h3>
+                    <p>Interventions en hôpital et en établissements spécialisés.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ================== CHIFFRES CLÉS ================== -->
+    <section id="chiffres" class="section-pad dots-bg" aria-labelledby="chiffres-title">
+        <div class="container">
+            <h2 id="chiffres-title" class="section-title">Chiffres clés</h2>
+
+            <!-- Ligne du haut : image + texte / texte + image (comme ta maquette) -->
+            <div class="keyfacts-top">
+                <figure class="fact-media">
+                    <img src="anniv80.png" alt="" loading="lazy" />
+                </figure>
+                <div class="fact-text">
+                    <h3><span class="pink">80 ans d’action</span></h3>
+                    <p>Une histoire de solidarité qui dure.</p>
+                </div>
+                <div class="fact-text">
+                    <h3><span class="pink">4 356 bénévoles engagés</span></h3>
+                    <p>Présents partout en France. 462 883 heures de bénévolat.</p>
+                </div>
+                <figure class="fact-media">
+                    <img src="coeur-mains.png" alt="" loading="lazy" />
+                </figure>
+            </div>
+
+            <!-- Les 3 pastilles -->
+            <ul class="stat-circles" role="list">
+                <li class="circle circle--orange">
+                    <p class="circle-title">1 million<br>de bénéficiaires*</p>
+                    <p class="circle-lines">
+                        34% enfants<br>52% personnes âgées<br>14% adultes<br>
+                        <small>*hors pandémie</small>
+                    </p>
+                </li>
+                <li class="circle circle--amber">
+                    <p class="circle-title">677 établissements</p>
+                    <p class="circle-lines">
+                        200 hôpitaux<br>430 maisons de retraite / EHPAD<br>47 divers
+                    </p>
+                </li>
+                <li class="circle circle--amber-light">
+                    <p class="circle-title">85 comités</p>
+                    <p class="circle-lines">10 régions<br>348 villes</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</main>
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer" role="contentinfo">
     <div class="container footer-top">
