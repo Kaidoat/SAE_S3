@@ -32,26 +32,91 @@ body{
     color:var(--text); background:#fff;
     display: flex;
     flex-direction: column;
-    padding-top: 90px; /* pour compenser la navbar fixe */
+    padding-top: 160px; /* pour compenser la navbar fixe */
 }
 main {
     flex: 1; /* prend tout l’espace restant avant le footer */
 }
+
+.header-top-wrapper {
+    position: relative;
+    overflow: visible;
+}
+.logo-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.access-pills-absolute {
+    position: absolute;
+    top: 0;
+    left: 170px;
+    transform: translateY(+50%);
+    z-index: 18;
+    gap: 1rem;
+}
+.pill-custom {
+    padding: 0.5rem 1rem;
+    border-radius: 50rem;
+    border: 1px solid #dee2e6;
+    background-color: white;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.pill-icon-blue { color: #007bff; }
+.pill-icon-pink { color: #e91e63; }
+
+.main-nav-bar {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+}
+.main-nav-links .nav-link { color: #333; padding: 0.75rem 1rem; font-weight: 500; }
+.main-nav-links .nav-link.active, .main-nav-links .nav-link:hover { color: #e91e63 !important; }
+.nav-divider { padding: 0 0.5rem; color: #ccc; }
+.header-bottom-content { padding-top: 50px; }
+.search-btn i {pointer-events: none;}
+
+
 .container{max-width:var(--container);margin-inline:auto;padding:0 16px}
 .svg{display:block;width:24px;height:24px}
 
 /* ============ Bande rose + logo + bulles ============ */
-.ribbon-bar{margin-top:28px;background:var(--rose);height:78px;width:100%;border-radius:0;position:relative;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.ribbon-bar {
+    background-color: #e91e63;
+    height: 100px;
+    position: relative;
+    z-index: 10;
+}
 .ribbon-inner{height:78px;display:flex;align-items:center;position:relative}
 .logo{height:var(--bubble-l);width:var(--bubble-l);object-fit:cover;object-position:var(--logo-pos-x) var(--logo-pos-y);border-radius:999px;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.15);position:absolute;left:16px;top:50%;transform:translateY(-50%);z-index:2}
 .hamburger{display:none;position:absolute;left:calc(16px + var(--bubble-l) + 12px);top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:2px solid #fff;align-items:center;justify-content:center;gap:5px;flex-direction:column;background:transparent;cursor:pointer}
 .hamburger span{display:block;width:20px;height:2px;background:#fff}
-.cta-bubbles{position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;align-items:center}
+.cta-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 1.1;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.bubble--s { background-color: #00bcd4; width: 80px; height: 80px; font-size: 0.75rem; }
+.bubble--m { background-color: #ff9800; width: 100px; height: 100px; font-size: 0.85rem; }
+.bubble--l { background-color: #ffc107; width: 120px; height: 120px; font-size: 1rem; }
 .bubble{display:grid;place-items:center;border-radius:50%;text-decoration:none;box-shadow:0 10px 18px rgba(0,0,0,.18)}
+.cta-bubbles-container {
+    position: absolute;
+    top: 0;
+    right: 5rem;
+    z-index: 15;
+}
 .bubble span{color:#222;font-weight:900;text-transform:uppercase;text-align:center;line-height:1.1;transform:rotate(-20deg)}
-.bubble--s{width:var(--bubble-s);height:var(--bubble-s);z-index:1}
-.bubble--m{width:var(--bubble-m);height:var(--bubble-m);margin-left:-8px;z-index:2}
-.bubble--l{width:var(--bubble-l);height:var(--bubble-l);margin-left:-16px;z-index:3}
 .bubble--s span{font-size:11px}.bubble--m span{font-size:12px}.bubble--l span{font-size:14px}
 .bubble--tools{background:var(--amber-300)}.bubble--benevole{background:var(--amber-400)}.bubble--don{background:var(--orange-400)}
 
@@ -95,25 +160,61 @@ mark{background:#fff3bf}
 .mobile-menu{display:block;max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 16px}
 .nav-open .mobile-menu{max-height:320px;padding:10px 16px 16px}
 
-/* ============ Footer compact ============ */
-.site-footer{color:var(--footer-text);background:var(--footer-bg);padding:16px 0 0}
-.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.footer-col{min-width:0}
-.footer-heading{margin:0 0 4px;font-size:18px;font-weight:700}
-.footer-address{line-height:1.4}
-.footer-address a{color:#fff;text-decoration:underline}
-.footer-address a:hover{color:var(--rose)}
-.footer-legal{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.footer-legal a{color:#fff;text-decoration:none}
-.footer-legal a:hover{color:var(--rose);text-decoration:underline}
-.footer-bottom{margin-top:8px;background:var(--footer-bottom)}
-.footer-bottom-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0}
-.footer-social{list-style:none;margin:0;padding:0;display:flex;gap:16px;align-items:center}
-.social-link{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;color:#fff;border:1px solid rgba(255,255,255,.3)}
-.social-link:hover{color:var(--rose);border-color:var(--rose)}
-.social-link svg{width:22px;height:22px}
-.newsletter-btn{background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:700;white-space:nowrap}
-.newsletter-btn:hover{background:#fff;color:#000}
+/* --- Footer global --- */
+.footer {
+    background-color: #555; /* gris moyen partie haute */
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Partie supérieure */
+.footer-top {
+    background-color: #555;
+}
+
+/* Partie inférieure */
+.footer-bottom {
+    background-color: #111; /* bande noire */
+}
+
+/* Liens */
+.footer a {
+    color: #f1f1f1;
+    transition: color 0.2s ease;
+}
+.footer a:hover {
+    color: #e94f9e; /* rose associatif */
+    text-decoration: underline;
+}
+
+/* Icônes sociales */
+.footer-social {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #444;
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.footer-social:hover {
+    background-color: #e94f9e;
+    border-color: #e94f9e;
+    color: #fff;
+}
+
+/* Bouton newsletter */
+.newsletter-btn {
+    border-radius: 4px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
 /* ============ Back to top ============ */
 .back-to-top{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:999px;display:grid;place-items:center;background:var(--rose);color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transform:translateY(8px) scale(.96);transition:opacity .25s,transform .25s;z-index:1000}
@@ -294,6 +395,17 @@ fieldset {
 .navbar-nav .nav-link:hover::after {
     width: 60%;
 }
+
+.site-header {
+    position: fixed;       /* Fixe la navbar en haut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;         /* Au-dessus de tout le contenu */
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 
 /* 🌸 Bouton spécial "Devenir bénévole" */
 .btn-light.text-pink {

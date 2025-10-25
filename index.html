@@ -1,145 +1,35 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Association — Accueil</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les Blouses Roses — Accueil</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Feuille de style personnalisée -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo_sans_fond.png">
 </head>
 <body id="top">
+
 <!-- Lien d’évitement -->
-<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
 
 <!-- ================= HEADER ================= -->
-<header class="site-header">
-    <!-- Bande rose -->
-    <div class="ribbon-bar">
-        <div class="container ribbon-inner">
-            <a href="index.html" class="logo-link" aria-label="Retour à l’accueil">
-                <img class="logo" src="img/logo.png" alt="Les Blouses Roses" />
-            </a>
+<div id="navbar-container"></div>
 
-
-            <!-- Hamburger (mobile) -->
-            <button id="nav-btn" class="hamburger"
-                    aria-controls="mobile-menu"
-                    aria-expanded="false"
-                    aria-label="Ouvrir le menu">
-                <span></span><span></span><span></span>
-            </button>
-
-            <!-- Bulles CTA -->
-            <div class="cta-bubbles">
-                <a href="#" class="bubble bubble--s bubble--tools"><span>BOITE A<br/>OUTILS</span></a>
-                <a href="Benevole.html" class="bubble bubble--m bubble--benevole"><span>DEVENIR<br/>BENEVOLE</span></a>
-                <a href="#" class="bubble bubble--l bubble--don"><span>JE FAIS<br/>UN DON</span></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pills accès rapides (avec loupe mobile à droite) -->
-    <ul class="access-pills container" role="list">
-        <li>
-            <a class="pill" href="#">
-          <span class="pill-icon pill-icon--blue" aria-hidden="true">
-            <svg class="svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="3" />
-              <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
-            </svg>
-          </span>
-                <span class="pill-text">Mon espace interne</span>
-            </a>
-        </li>
-        <li>
-            <a class="pill" href="#">
-          <span class="pill-icon pill-icon--pink" aria-hidden="true">
-            <svg class="svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="3" />
-              <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
-            </svg>
-          </span>
-                <span class="pill-text">Mon espace donateur</span>
-            </a>
-        </li>
-
-        <!-- Loupe mobile (à droite) -->
-        <li class="pills-search">
-            <button class="search-btn search-btn--mobile search-trigger"
-                    aria-label="Rechercher"
-                    aria-controls="site-search"
-                    aria-expanded="false">
-                <svg class="svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M21.53 20.47 17.4 16.34A8.5 8.5 0 1 0 16.34 17.4l4.13 4.13a.75.75 0 0 0 1.06-1.06ZM10.5 17a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13Z"/>
-                </svg>
-            </button>
-        </li>
-    </ul>
-
-    <!-- Nav principale -->
-    <nav class="main-nav" aria-label="Navigation principale">
-        <div class="container nav-inner">
-            <div></div>
-            <div class="nav-center">
-                <ul class="menu" role="list">
-                    <li class="home">
-                        <a href="/" class="home-link" aria-label="Accueil">
-                            <svg class="svg" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z"/>
-                            </svg>
-                            <span class="sr-only">Accueil</span>
-                        </a>
-                    </li>
-                    <li><a href="#" aria-current="page">Qui sommes nous ?</a></li>
-                    <li class="divider" aria-hidden="true"></li>
-                    <li><a href="#">Nous soutenir</a></li>
-                    <li class="divider" aria-hidden="true"></li>
-                    <li><a href="#">Faire appel à nous</a></li>
-                    <li class="divider" aria-hidden="true"></li>
-                    <li><a href="#">Espace presse</a></li>
-                    <li class="divider" aria-hidden="true"></li>
-                    <li><a href="#">Actualités</a></li>
-                </ul>
-            </div>
-
-            <!-- Loupe desktop (dans la barre) -->
-            <button id="search-btn" class="search-btn search-btn--desktop search-trigger"
-                    aria-label="Rechercher"
-                    aria-controls="site-search"
-                    aria-expanded="false">
-                <svg class="svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M21.53 20.47 17.4 16.34A8.5 8.5 0 1 0 16.34 17.4l4.13 4.13a.75.75 0 0 0 1.06-1.06ZM10.5 17a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13Z"/>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Panneau recherche interne -->
-        <form id="site-search" class="site-search" role="search">
-            <label for="search-input" class="sr-only">Rechercher sur le site</label>
-            <input id="search-input" type="search"
-                   placeholder="Rechercher… (ex. bénévole, don, presse)" autocomplete="on" />
-            <button type="submit" class="search-submit">Rechercher</button>
-            <div id="search-results" class="search-results" role="region"
-                 aria-live="polite" aria-label="Résultats de recherche"></div>
-        </form>
-
-        <!-- Menu mobile -->
-        <div id="mobile-menu" class="mobile-menu container">
-            <a href="#" aria-current="page">Qui sommes nous ?</a>
-            <a href="#">Nous soutenir</a>
-            <a href="#">Faire appel à nous</a>
-            <a href="#">Espace presse</a>
-            <a href="#">Actualités</a>
-        </div>
-    </nav>
-</header>
-
-<<main id="contenu">
+<!-- ================= CONTENU PRINCIPAL ================= -->
+<main id="contenu">
 
     <!-- ================== ENCARt / TAGLINE ================== -->
-    <section class="section-pad dots-bg">
+    <section class="section-pad dots-bg text-center">
         <div class="container">
-            <div class="tagline" role="note" aria-label="Présentation">
+            <div class="tagline lead">
                 Depuis 80 ans, 4&nbsp;400 bénévoles apportent joie et réconfort aux enfants,
                 adultes hospitalisés et aux personnes âgées.
             </div>
@@ -148,35 +38,34 @@
 
     <!-- ================== GRANDE PHOTO ================== -->
     <section class="section-pad dots-bg">
-        <div class="container hero-photo">
-            <!-- remplace group.jpg par ta vraie image -->
-            <img src="group.jpg" alt="Bénévoles réunis en blouse rose lors d’un événement" loading="lazy">
+        <div class="container text-center">
+            <img src="group.jpg" alt="Bénévoles réunis en blouse rose lors d’un événement" class="img-fluid rounded shadow-sm" loading="lazy">
         </div>
     </section>
 
-    <!-- ================== BLOCS ALTERNÉS (image/texte) ================== -->
+    <!-- ================== BLOCS ALTERNÉS ================== -->
     <section class="section-pad dots-bg" aria-label="Présentation détaillée">
-        <div class="container zigzag">
+        <div class="container">
 
-            <!-- Bloc 1 : image gauche / texte droite -->
-            <article class="zig">
-                <figure class="zig-media">
-                    <img src="action1.jpg" alt="Atelier avec enfant hospitalisé" loading="lazy">
-                </figure>
-                <div class="zig-text">
+            <!-- Bloc 1 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <img src="action1.jpg" alt="Atelier avec enfant hospitalisé" class="img-fluid rounded shadow-sm" loading="lazy">
+                </div>
+                <div class="col-md-6">
                     <p>
                         <strong>Les Blouses Roses et Les Blousons Roses</strong> interviennent principalement
                         auprès des <strong>enfants hospitalisés</strong> et des <strong>personnes âgées</strong> en EHPAD.
                     </p>
                 </div>
-            </article>
+            </div>
 
-            <!-- Bloc 2 : image droite / texte gauche -->
-            <article class="zig">
-                <figure class="zig-media">
-                    <img src="action2.jpg" alt="Échange avec une personne âgée en établissement" loading="lazy">
-                </figure>
-                <div class="zig-text">
+            <!-- Bloc 2 -->
+            <div class="row align-items-center flex-md-row-reverse mb-5">
+                <div class="col-md-6">
+                    <img src="action2.jpg" alt="Échange avec une personne âgée en établissement" class="img-fluid rounded shadow-sm" loading="lazy">
+                </div>
+                <div class="col-md-6">
                     <p>
                         Ils écoutent, réconfortent, distraient les malades et apportent de la joie dans un
                         quotidien de <strong>solitude</strong> ou de <strong>soins</strong>.
@@ -187,14 +76,14 @@
                         <strong>établissements et services spécialisés</strong> (IME, IEM, MAS, FAM, ESAT, foyers…).
                     </p>
                 </div>
-            </article>
+            </div>
 
-            <!-- Bloc 3 : image gauche / texte droite -->
-            <article class="zig">
-                <figure class="zig-media">
-                    <img src="team.jpg" alt="Groupe de bénévoles des Blouses Roses" loading="lazy">
-                </figure>
-                <div class="zig-text">
+            <!-- Bloc 3 -->
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <img src="team.jpg" alt="Groupe de bénévoles des Blouses Roses" class="img-fluid rounded shadow-sm" loading="lazy">
+                </div>
+                <div class="col-md-6">
                     <p>
                         L’Association a besoin de <strong>bénévoles</strong>, mais aussi de <strong>fonds</strong> et
                         d’<strong>entreprises partenaires</strong> pour développer ses actions. L’engagement est
@@ -202,7 +91,7 @@
                         disponibilités et les talents de chacun.
                     </p>
                 </div>
-            </article>
+            </div>
 
         </div>
     </section>
@@ -210,155 +99,80 @@
     <!-- ================== NOS ACTIONS ================== -->
     <section id="actions" class="section-pad dots-bg" aria-labelledby="actions-title">
         <div class="container">
-            <h2 id="actions-title" class="section-title">Nos actions</h2>
+            <h2 id="actions-title" class="section-title text-center mb-4">Nos actions</h2>
 
-            <ul class="actions-list" role="list">
-                <li class="action-item">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
                     <h3>Enfants hospitalisés</h3>
                     <p>Ateliers de jeu, de lecture et de créativité pour redonner le sourire pendant l’hospitalisation.</p>
-                </li>
-                <li class="action-item">
+                </div>
+                <div class="col-md-3 mb-4">
                     <h3>Adultes hospitalisés</h3>
                     <p>Écoute, présence et activités légères pour rompre l’isolement et adoucir le quotidien.</p>
-                </li>
-                <li class="action-item">
+                </div>
+                <div class="col-md-3 mb-4">
                     <h3>Personnes âgées (EHPAD)</h3>
                     <p>Moments de convivialité et de mémoire partagée pour stimuler et rassurer les résident·e·s.</p>
-                </li>
-                <li class="action-item">
+                </div>
+                <div class="col-md-3 mb-4">
                     <h3>Personnes en situation de handicap</h3>
                     <p>Interventions en hôpital et en établissements spécialisés.</p>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ================== CHIFFRES CLÉS ================== -->
     <section id="chiffres" class="section-pad dots-bg" aria-labelledby="chiffres-title">
-        <div class="container">
-            <h2 id="chiffres-title" class="section-title">Chiffres clés</h2>
+        <div class="container text-center">
+            <h2 id="chiffres-title" class="section-title mb-5">Chiffres clés</h2>
 
-            <!-- Ligne du haut : image + texte / texte + image (comme ta maquette) -->
-            <div class="keyfacts-top">
-                <figure class="fact-media">
-                    <img src="anniv80.png" alt="" loading="lazy" />
-                </figure>
-                <div class="fact-text">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-3">
+                    <img src="anniv80.png" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-3">
                     <h3><span class="pink">80 ans d’action</span></h3>
                     <p>Une histoire de solidarité qui dure.</p>
                 </div>
-                <div class="fact-text">
+                <div class="col-md-3">
                     <h3><span class="pink">4 356 bénévoles engagés</span></h3>
                     <p>Présents partout en France. 462 883 heures de bénévolat.</p>
                 </div>
-                <figure class="fact-media">
-                    <img src="coeur-mains.png" alt="" loading="lazy" />
-                </figure>
+                <div class="col-md-3">
+                    <img src="coeur-mains.png" alt="" class="img-fluid">
+                </div>
             </div>
 
-            <!-- Les 3 pastilles -->
-            <ul class="stat-circles" role="list">
-                <li class="circle circle--orange">
-                    <p class="circle-title">1 million<br>de bénéficiaires*</p>
-                    <p class="circle-lines">
-                        34% enfants<br>52% personnes âgées<br>14% adultes<br>
-                        <small>*hors pandémie</small>
-                    </p>
-                </li>
-                <li class="circle circle--amber">
-                    <p class="circle-title">677 établissements</p>
-                    <p class="circle-lines">
-                        200 hôpitaux<br>430 maisons de retraite / EHPAD<br>47 divers
-                    </p>
-                </li>
-                <li class="circle circle--amber-light">
-                    <p class="circle-title">85 comités</p>
-                    <p class="circle-lines">10 régions<br>348 villes</p>
-                </li>
-            </ul>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-3 p-3 rounded circle circle--orange">
+                    <p class="fw-bold">1 million<br>de bénéficiaires*</p>
+                    <p>34% enfants<br>52% personnes âgées<br>14% adultes<br>
+                        <small>*hors pandémie</small></p>
+                </div>
+                <div class="col-md-3 p-3 rounded circle circle--amber">
+                    <p class="fw-bold">677 établissements</p>
+                    <p>200 hôpitaux<br>430 maisons de retraite / EHPAD<br>47 divers</p>
+                </div>
+                <div class="col-md-3 p-3 rounded circle circle--amber-light">
+                    <p class="fw-bold">85 comités</p>
+                    <p>10 régions<br>348 villes</p>
+                </div>
+            </div>
         </div>
     </section>
 
 </main>
+
 <!-- ================= FOOTER ================= -->
-<footer class="site-footer" role="contentinfo">
-    <div class="container footer-top">
-        <!-- Contact -->
-        <section class="footer-col">
-            <h2 class="footer-heading">Nous contacter</h2>
-            <address class="footer-address">
-                <strong>Les Blouses Roses</strong><br />
-                5 rue Barye, 75017 PARIS<br />
-                <a href="tel:+33146228232">01 46 22 82 32</a><br />
-                <a href="mailto:siegenational@lesblousesroses.asso.fr">siegenational@lesblousesroses.asso.fr</a>
-            </address>
-        </section>
+<div id="footer-container"></div>
 
-        <!-- Légaux -->
-        <nav class="footer-col" aria-label="Liens légaux">
-            <ul class="footer-legal" role="list">
-                <li><a href="mentions-legales.html">Mentions légales</a></li>
-                <li><a href="cookies.html">Politique de cookies</a></li>
-                <li><a href="donnees-personnelles.html">Protection des données personnelles</a></li>
-                <li><a href="#preferences-cookies">Préférences de cookies</a></li>
-                <li><a href="accessibilite.html">Accessibilité</a></li>
-                <li><a href="plan-du-site.html">Plan du site</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- Bande noire -->
-    <div class="footer-bottom">
-        <div class="container footer-bottom-inner">
-            <ul class="footer-social" role="list" aria-label="Réseaux sociaux">
-                <li>
-                    <a href="https://www.facebook.com/profile.php?id=100064446739294"
-                       target="_blank" rel="noopener noreferrer"
-                       aria-label="Facebook" class="social-link">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 22v-8h2.6l.4-3H13V8.5c0-.9.3-1.5 1.6-1.5H16V4.3C15.7 4.2 14.9 4 14 4c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.1v8h2.9z"/></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://x.com/LesBlousesRoses"
-                       target="_blank" rel="noopener noreferrer"
-                       aria-label="X (Twitter)" class="social-link">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h3.4l5 7 5.8-7H21l-7.3 9.1L21 21h-3.4l-5.6-7.6L6 21H3l7.7-9.9L3 3z"/></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/lesblousesrosesnational/"
-                       target="_blank" rel="noopener noreferrer"
-                       aria-label="Instagram" class="social-link">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5m0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5m5.8-3.8a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2Z"/></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/company/les-blouses-roses/"
-                       target="_blank" rel="noopener noreferrer"
-                       aria-label="LinkedIn" class="social-link">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.9 6.9A2 2 0 1 1 5 5a2 2 0 0 1 1.9 1.9zM4.5 8.8h4.1V20H4.5zM13 8.8c2 0 3.3 1 3.8 2.2V8.8h4.1V20h-4.1v-6.1c0-1.5-.9-2.5-2.2-2.5-1.2 0-2.2.8-2.2 2.6V20H8.3V8.8z"/></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.youtube.com/@LESBLOUSESROSESNATIONAL"
-                       target="_blank" rel="noopener noreferrer"
-                       aria-label="YouTube" class="social-link">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.5 7.1a3 3 0 0 0-2.1-2.1C18.6 4.5 12 4.5 12 4.5s-6.6 0-8.4.5A3 3 0 0 0 1.5 7.1 31 31 0 0 0 1 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
-                    </a>
-                </li>
-            </ul>
-
-            <a class="newsletter-btn" href="newsletter.html">S’abonner à la NEWSLETTER</a>
-        </div>
-    </div>
-</footer>
-
-<!-- Bouton retour en haut -->
-<a href="#top" class="back-to-top" tabindex="-1" aria-label="Revenir en haut">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4 4 12h4v8h8v-8h4z"/></svg>
+<!-- ================= BOUTON RETOUR HAUT ================= -->
+<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3" tabindex="-1" aria-label="Revenir en haut">
+    <i class="bi bi-arrow-up"></i>
 </a>
 
-<!-- ====== Index de recherche interne ====== -->
+<!-- ====== Données de recherche interne ====== -->
 <script id="search-data" type="application/json">
     [
         {"url":"index.html","title":"Accueil","content":"Bienvenue... Faire un don, devenir bénévole, espace presse, actualités."},
@@ -370,8 +184,11 @@
     ]
 </script>
 
-<!-- ====== JS : menu, recherche (2 loupes), back-to-top ====== -->
-<script src="js/Index.js"></script>
+<!-- ================= JS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/Search.js"></script>
+<script src="js/footer.js"></script>
 
 </body>
 </html>
