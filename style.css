@@ -32,6 +32,7 @@ body{
     color:var(--text); background:#fff;
     display: flex;
     flex-direction: column;
+    padding-top: 90px; /* pour compenser la navbar fixe */
 }
 main {
     flex: 1; /* prend tout l’espace restant avant le footer */
@@ -256,6 +257,69 @@ fieldset {
     text-align: center;
     margin-top: 2rem;
 }
+
+/* 🌸 Couleur rose principale */
+.bg-pink {
+    background-color: #e6007e !important;
+}
+
+/* 🌸 Texte rose */
+.text-pink {
+    color: #e6007e !important;
+}
+
+/* 🌸 Style des liens de navigation */
+.navbar-nav .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffe6f2 !important;
+}
+
+/* 🌸 Soulignement animé au survol */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 60%;
+}
+
+/* 🌸 Bouton spécial "Devenir bénévole" */
+.btn-light.text-pink {
+    background-color: #fff;
+    color: #e6007e;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-light.text-pink:hover {
+    background-color: #ffe6f2;
+    color: #c00065;
+    border-color: #fff;
+}
+
+/* 🌸 Ajustement de l’icône burger (en blanc) */
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* 🌸 Pour éviter que le contenu soit caché par la navbar fixe */
+body {
+    padding-top: 90px;
+}
+
+
 
 /* Adaptation responsive (une seule colonne sur mobile) */
 @media (max-width: 900px) {
