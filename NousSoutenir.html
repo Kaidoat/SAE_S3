@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nous soutenir - Les Blouses roses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <!-- Bande rose -->
+  <div class="ribbon-bar">
+    <div class="container ribbon-inner">
+      <a href="index.html" class="logo-link" aria-label="Retour à l’accueil">
+        <img class="logo" src="img/logo.png" alt="Les Blouses Roses" />
+      </a>
+
+
+      <!-- Hamburger (mobile) -->
+      <button id="nav-btn" class="hamburger"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Bulles CTA -->
+      <div class="cta-bubbles">
+        <a href="#" class="bubble bubble--s bubble--tools"><span>BOITE A<br/>OUTILS</span></a>
+        <a href="Benevole.html" class="bubble bubble--m bubble--benevole"><span>DEVENIR<br/>BENEVOLE</span></a>
+        <a href="#" class="bubble bubble--l bubble--don"><span>JE FAIS<br/>UN DON</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pills accès rapides (avec loupe mobile à droite) -->
+  <ul class="access-pills container" role="list">
+    <li>
+      <a class="pill" href="#">
+          <span class="pill-icon pill-icon--blue" aria-hidden="true">
+            <svg class="svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="3" />
+              <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+            </svg>
+          </span>
+        <span class="pill-text">Mon espace interne</span>
+      </a>
+    </li>
+    <li>
+      <a class="pill" href="#">
+          <span class="pill-icon pill-icon--pink" aria-hidden="true">
+            <svg class="svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="3" />
+              <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+            </svg>
+          </span>
+        <span class="pill-text">Mon espace donateur</span>
+      </a>
+    </li>
+
+    <!-- Loupe mobile (à droite) -->
+    <li class="pills-search">
+      <button class="search-btn search-btn--mobile search-trigger"
+              aria-label="Rechercher"
+              aria-controls="site-search"
+              aria-expanded="false">
+        <svg class="svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21.53 20.47 17.4 16.34A8.5 8.5 0 1 0 16.34 17.4l4.13 4.13a.75.75 0 0 0 1.06-1.06ZM10.5 17a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13Z"/>
+        </svg>
+      </button>
+    </li>
+  </ul>
+
+  <!-- Nav principale -->
+  <nav class="main-nav" aria-label="Navigation principale">
+    <div class="container nav-inner">
+      <div></div>
+      <div class="nav-center">
+        <ul class="menu" role="list">
+          <li class="home">
+            <a href="/" class="home-link" aria-label="Accueil">
+              <svg class="svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-10.5Z"/>
+              </svg>
+              <span class="sr-only">Accueil</span>
+            </a>
+          </li>
+          <li><a href="#">Qui sommes nous ?</a></li>
+          <li class="divider" aria-hidden="true"></li>
+          <li><a href="NousSoutenir.html" aria-current="page">Nous soutenir</a></li>
+          <li class="divider" aria-hidden="true"></li>
+          <li><a href="#">Faire appel à nous</a></li>
+          <li class="divider" aria-hidden="true"></li>
+          <li><a href="#">Espace presse</a></li>
+          <li class="divider" aria-hidden="true"></li>
+          <li><a href="#">Actualités</a></li>
+        </ul>
+      </div>
+
+      <!-- Loupe desktop (dans la barre) -->
+      <button id="search-btn" class="search-btn search-btn--desktop search-trigger"
+              aria-label="Rechercher"
+              aria-controls="site-search"
+              aria-expanded="false">
+        <svg class="svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21.53 20.47 17.4 16.34A8.5 8.5 0 1 0 16.34 17.4l4.13 4.13a.75.75 0 0 0 1.06-1.06ZM10.5 17a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Panneau recherche interne -->
+    <form id="site-search" class="site-search" role="search">
+      <label for="search-input" class="sr-only">Rechercher sur le site</label>
+      <input id="search-input" type="search"
+             placeholder="Rechercher… (ex. bénévole, don, presse)" autocomplete="on" />
+      <button type="submit" class="search-submit">Rechercher</button>
+      <div id="search-results" class="search-results" role="region"
+           aria-live="polite" aria-label="Résultats de recherche"></div>
+    </form>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="mobile-menu container">
+      <a href="#" aria-current="page">Qui sommes nous ?</a>
+      <a href="#">Nous soutenir</a>
+      <a href="#">Faire appel à nous</a>
+      <a href="#">Espace presse</a>
+      <a href="#">Actualités</a>
+    </div>
+  </nav>
+</header>
+
+<main id="contenu" class="container">
+  <h1 class="section-title"> Nos partenaires fidèles</h1>
+
+  <p class="contact-section" > Les opérations menées avec nos partenaires servent leur politique RSE,
+    tout en contribuant au financement des missions sociales, à la visibilité et à la notoriété
+    des Blouses Roses. </p>
+
+  <div class="logo-partenaires">
+
+
+  </div>
+
+
+  <h1 class="section-title" > De la générosité et de belles idées </h1>
+  <p class="contact-section"> De nombreuses entreprises associent leur nom à celui des Blouses Roses et
+    nous accompagnent dans notre action : aide financière pour la création de nouveaux
+    comités ou pour la formation de nouveaux bénévoles, de président(e)s de comités,
+    de bénévoles en charge du recrutement... </p>
+
+  <div class="contact-section">
+  <p> Certaines entreprises proposent et financent aussi des projets comme : </p>
+
+  <div class="grp-container" >
+    <div class= "grp" >
+      <h3> Les formations </h3>
+      <ul>
+        <li> Formateurs</li>
+        <li> Conférences-Ateliers</li>
+        <li> Outils pédagogiques</li>
+      </ul>
+    </div>
+
+    <div class = "grp">
+      <h3> Le recrutement</h3>
+      <ul>
+        <li> Réunions-Entretien</li>
+        <li> Documentation </li>
+        <li> Uniformes </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grp-container">
+    <div class="grp">
+      <h3> Les animations à thème </h3>
+      <ul>
+        <li> Spectacles</li>
+        <li> Médiations animales</li>
+        <li> Yoga du rire </li>
+      </ul>
+    </div>
+
+    <div class="grp">
+      <h3>L'animation des 85 comités </h3>
+      <ul>
+        <li> Journée d'Etudes Régionale avec les bénévoles </li>
+        <li> Réunions de Travail en Région entre président(e)s </li>
+        <li> Comités Inter Régionaux avec les délégués régionaux </li>
+      </ul>
+    </div>
+
+  </div>
+  </div>
+
+  <h1 class="section-title"> Devenir entreprise partenaire </h1>
+  <p class="contact-section"> Associez votre entreprise et vos salariés à un projet riche de sens. </p>
+
+  <div class="grp1-container">
+  <div class="grp2"  >
+  <ul>
+    <li class="contact-section"> Devenir partenaire, c’est soutenir Les Blouses Roses et leurs actions auprès des enfants et adultes hospitalisés et des personnes âgées en EHPAD. C’est également mobiliser vos salariés autour d'un projet solidaire et d'associer votre nom à une belle cause Reconnue d'Utilité Publique (RUP). Devenir partenaire, c’est faire une "bonne action" en bénéficiant d’avantages financiers et de contreparties pour votre entreprise :
+
+      <ul>
+        <br>
+        <li>Un reçu fiscal ouvrant droit à déduction d'impôts </li>
+        <li> La présence de votre logo sur notre site internet</li>
+        <li> Un relai de notre partenariat sur tous nos réseaux sociaux, X, Linkedin, Facebook, Instagram</li>
+      </ul>
+    </li>
+    <br>
+    <li class="contact-section"> N'hésitez pas à nous contacter par mail pour plus d'informations
+      sbrochot@lesblousesroses.asso.fr
+    </li>
+  </ul>
+  </div>
+
+  <div class="grp1">
+    <h2> 20 000 euros</h2>
+    <p> C'est le budget pour intervenir dans 5 établissements </p>
+
+    <h2> 12 000 euros</h2>
+    <p> Le budget formation d'une région</p>
+
+    <h2> 5 000 euros</h2>
+    <p> Le coût moyen de l'ouverture d'un comité</p>
+
+    <h2> 100 000 euros</h2>
+    <p> Le budget formation des Blouses Roses niveau national</p>
+
+  </div>
+  </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-top">
+    <!-- Contact -->
+    <section class="footer-col">
+      <h2 class="footer-heading">Nous contacter</h2>
+      <address class="footer-address">
+        <strong>Les Blouses Roses</strong><br />
+        5 rue Barye, 75017 PARIS<br />
+        <a href="tel:+33146228232">01 46 22 82 32</a><br />
+        <a href="mailto:siegenational@lesblousesroses.asso.fr">siegenational@lesblousesroses.asso.fr</a>
+      </address>
+    </section>
+
+    <!-- Légaux -->
+    <nav class="footer-col" aria-label="Liens légaux">
+      <ul class="footer-legal" role="list">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="cookies.html">Politique de cookies</a></li>
+        <li><a href="donnees-personnelles.html">Protection des données personnelles</a></li>
+        <li><a href="#preferences-cookies">Préférences de cookies</a></li>
+        <li><a href="accessibilite.html">Accessibilité</a></li>
+        <li><a href="plan-du-site.html">Plan du site</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Bande noire -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <ul class="footer-social" role="list" aria-label="Réseaux sociaux">
+        <li>
+          <a href="https://www.facebook.com/profile.php?id=100064446739294"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 22v-8h2.6l.4-3H13V8.5c0-.9.3-1.5 1.6-1.5H16V4.3C15.7 4.2 14.9 4 14 4c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.1v8h2.9z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/LesBlousesRoses"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="X (Twitter)" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h3.4l5 7 5.8-7H21l-7.3 9.1L21 21h-3.4l-5.6-7.6L6 21H3l7.7-9.9L3 3z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/lesblousesrosesnational/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Instagram" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5m0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5m5.8-3.8a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2Z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/les-blouses-roses/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="LinkedIn" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.9 6.9A2 2 0 1 1 5 5a2 2 0 0 1 1.9 1.9zM4.5 8.8h4.1V20H4.5zM13 8.8c2 0 3.3 1 3.8 2.2V8.8h4.1V20h-4.1v-6.1c0-1.5-.9-2.5-2.2-2.5-1.2 0-2.2.8-2.2 2.6V20H8.3V8.8z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@LESBLOUSESROSESNATIONAL"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="YouTube" class="social-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.5 7.1a3 3 0 0 0-2.1-2.1C18.6 4.5 12 4.5 12 4.5s-6.6 0-8.4.5A3 3 0 0 0 1.5 7.1 31 31 0 0 0 1 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+          </a>
+        </li>
+      </ul>
+
+      <a class="newsletter-btn" href="newsletter.html">S’abonner à la NEWSLETTER</a>
+    </div>
+  </div>
+
+</footer>
+
+<script src="js/Index.js"></script>
+
+</body>
+</html>

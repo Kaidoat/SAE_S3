@@ -400,6 +400,87 @@ fieldset {
 .circle--amber{ background:var(--amber-400); }
 .circle--amber-light{ background:var(--amber-300); }
 
+/* Conteneur pour placer les deux encadrés côte à côte */
+.grp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+/* Style de chaque encadré */
+.grp {
+    flex: 1 1 45%;
+    border: 2px solid #e2007a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background-color: #fff0f7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.grp h3, .grp1 h2 {
+    color: #e2007a;
+    margin-top: 0;
+}
+
+.grp1 p{
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .grp-container {
+        flex-direction: column;
+    }
+
+    .grp {
+        flex: 1 1 100%;
+    }
+}
+
+
+
+.grp1-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.grp1-container .grp2 {
+    flex: 1 1 55%;
+}
+
+.grp1-container .grp1 {
+    background-color: sandybrown;
+    flex: 1 1 40%;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+/* Responsive : mobile passe en colonne */
+@media (max-width: 768px) {
+    .grp1-container {
+        flex-direction: column;
+    }
+
+    .grp1-container .grp2,
+    .grp1-container .grp1 {
+        flex: 1 1 100%;
+    }
+}
+
+.point{
+    border: 2px solid #f4a460;
+    border-radius: 12px;
+}
+
 
 
 
