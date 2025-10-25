@@ -481,6 +481,52 @@ fieldset {
     border-radius: 12px;
 }
 
+/* Conteneur des logos partenaires */
+.logo-partenaires {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #fff0f7;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Chaque lien autour d'un logo */
+.logo-partenaires a {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+}
+
+/* Effet au survol */
+.logo-partenaires a:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Images des logos */
+.logo-partenaires img {
+    max-width: 120px;
+    height: auto;
+    display: block;
+}
+
+/* Responsive : réduire les logos sur petits écrans */
+@media (max-width: 768px) {
+    .logo-partenaires img {
+        max-width: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-partenaires img {
+        max-width: 70px;
+    }
+}
 
 
 
