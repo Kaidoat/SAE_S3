@@ -1,57 +1,25 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Devenir bénévole — Les Blouses Roses</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="img/logo_sans_fond.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les Blouses Roses — Accueil</title>
 
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Feuille de style personnalisée -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body id="top">
+
 <!-- Lien d’évitement -->
-<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
 
 <!-- ================= HEADER ================= -->
-<!-- ================= HEADER ================= -->
-<header class="navbar navbar-expand-lg navbar-light bg-pink shadow-sm py-3 fixed-top">
-    <div class="container-fluid px-4">
+<div id="navbar-container"></div>
 
-        <!-- 🩷 Logo -->
-        <a class="navbar-brand d-flex align-items-center text-white" href="index.html">
-            <img src="img/logo.png" alt="Les Blouses Roses" height="50" class="me-2 rounded-circle bg-white p-1 shadow-sm">
-            <span class="fw-bold fs-5">Les Blouses Roses</span>
-        </a>
-
-        <!-- 🔽 Bouton burger (mobile) -->
-        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                aria-controls="mainNav" aria-expanded="false" aria-label="Basculer la navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- 🌐 Menu principal -->
-        <nav class="collapse navbar-collapse justify-content-center" id="mainNav">
-            <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-4">
-                <li class="nav-item"><a class="nav-link text-white fw-semibold" href="index.html">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-semibold" href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-semibold" href="nous-soutenir.html">Nous soutenir</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-semibold" href="faire-appel-a-nous.html">Faire appel à nous</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-semibold" href="espace-presse.html">Espace presse</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-semibold" href="actualites.html">Actualités</a></li>
-            </ul>
-        </nav>
-
-        <!-- 🫧 CTA (à droite) -->
-        <div class="d-none d-lg-flex align-items-center gap-2">
-            <a href="#" class="btn btn-outline-light rounded-pill px-3 py-2 fw-semibold">Boîte à outils</a>
-            <a href="benevole.html" class="btn btn-light text-pink rounded-pill px-3 py-2 fw-semibold">Devenir bénévole</a>
-            <a href="#" class="btn btn-dark rounded-pill px-3 py-2 fw-semibold">Faire un don</a>
-        </div>
-
-    </div>
-</header>
 
 
 
@@ -169,62 +137,20 @@
 
 
 <!-- ================= FOOTER ================= -->
-<footer class="site-footer" role="contentinfo">
-    <div class="container footer-top">
-        <!-- Contact -->
-        <section class="footer-col">
-            <h2 class="footer-heading">Nous contacter</h2>
-            <address class="footer-address">
-                <strong>Les Blouses Roses</strong><br />
-                5 rue Barye, 75017 PARIS<br />
-                <a href="tel:+33146228232">01 46 22 82 32</a><br />
-                <a href="mailto:siegenational@lesblousesroses.asso.fr">siegenational@lesblousesroses.asso.fr</a>
-            </address>
-        </section>
+<div id="footer-container"></div>
 
-        <!-- Légaux -->
-        <nav class="footer-col" aria-label="Liens légaux">
-            <ul class="footer-legal" role="list">
-                <li><a href="mentions-legales.html">Mentions légales</a></li>
-                <li><a href="cookies.html">Politique de cookies</a></li>
-                <li><a href="donnees-personnelles.html">Protection des données personnelles</a></li>
-                <li><a href="#preferences-cookies">Préférences de cookies</a></li>
-                <li><a href="accessibilite.html">Accessibilité</a></li>
-                <li><a href="plan-du-site.html">Plan du site</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- Bande noire -->
-    <div class="footer-bottom">
-        <div class="container footer-bottom-inner">
-            <ul class="footer-social" role="list" aria-label="Réseaux sociaux">
-                <li><a href="https://www.facebook.com/profile.php?id=100064446739294" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 22v-8h2.6l.4-3H13V8.5c0-.9.3-1.5 1.6-1.5H16V4.3C15.7 4.2 14.9 4 14 4c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.1v8h2.9z"/></svg>
-                </a></li>
-                <li><a href="https://x.com/LesBlousesRoses" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="social-link">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h3.4l5 7 5.8-7H21l-7.3 9.1L21 21h-3.4l-5.6-7.6L6 21H3l7.7-9.9L3 3z"/></svg>
-                </a></li>
-                <li><a href="https://www.instagram.com/lesblousesrosesnational/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5m0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5m5.8-3.8a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2Z"/></svg>
-                </a></li>
-                <li><a href="https://www.linkedin.com/company/les-blouses-roses/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.9 6.9A2 2 0 1 1 5 5a2 2 0 0 1 1.9 1.9zM4.5 8.8h4.1V20H4.5zM13 8.8c2 0 3.3 1 3.8 2.2V8.8h4.1V20h-4.1v-6.1c0-1.5-.9-2.5-2.2-2.5-1.2 0-2.2.8-2.2 2.6V20H8.3V8.8z"/></svg>
-                </a></li>
-                <li><a href="https://www.youtube.com/@LESBLOUSESROSESNATIONAL" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-link">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.5 7.1a3 3 0 0 0-2.1-2.1C18.6 4.5 12 4.5 12 4.5s-6.6 0-8.4.5A3 3 0 0 0 1.5 7.1 31 31 0 0 0 1 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
-                </a></li>
-            </ul>
-
-            <a class="newsletter-btn" href="newsletter.html">S’abonner à la NEWSLETTER</a>
-        </div>
-    </div>
-</footer>
-
-<!-- Bouton retour en haut -->
-<a href="#top" class="back-to-top" tabindex="-1" aria-label="Revenir en haut">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4 4 12h4v8h8v-8h4z"/></svg>
+<!-- ================= BOUTON RETOUR HAUT ================= -->
+<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3" tabindex="-1" aria-label="Revenir en haut">
+    <i class="bi bi-arrow-up"></i>
 </a>
+
+
+<!-- ================= JS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/Search.js"></script>
+<script src="js/footer.js"></script>
+
 
 </body>
 </html>
