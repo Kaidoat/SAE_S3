@@ -72,14 +72,6 @@ main {
 .bubble--m { background-color: #ff9800; width: 100px; height: 100px; font-size: 0.85rem; }
 .bubble--l { background-color: #ffc107; width: 120px; height: 120px; font-size: 1rem; }
 
-.access-pills-absolute {
-    position: absolute;
-    top: 0;
-    left: 170px;
-    transform: translateY(+50%);
-    z-index: 18;
-    gap: 1rem;
-}
 .pill-custom {
     padding: 0.5rem 1rem;
     border-radius: 50rem;
@@ -92,14 +84,6 @@ main {
 .pill-icon-blue { color: #007bff; }
 .pill-icon-pink { color: var(--rose); }
 
-.main-nav-bar {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: white;
-}
-.main-nav-links .nav-link { color: #333; padding: 0.75rem 1rem; font-weight: 500; }
-.main-nav-links .nav-link.active, .main-nav-links .nav-link:hover { color: var(--rose) !important; }
-.nav-divider { padding: 0 0.5rem; color: #ccc; }
 .header-bottom-content { padding-top: 50px; }
 .search-btn i {pointer-events: none;}
 .search-btn{justify-self:end;background:none;border:0;padding:6px;cursor:pointer;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
@@ -192,26 +176,6 @@ main {
     margin-bottom: 0.5rem;
 }
 
-.small-note {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 2rem;
-}
-
-.benevole-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem 3rem;
-}
-
-/* Champs et labels */
-.form-group label {
-    font-weight: 600;
-    color: #444;
-    margin-bottom: 0.3rem;
-}
-
 input, textarea, select {
     border: 1.5px solid #f0cadd;
     border-radius: 10px;
@@ -256,37 +220,15 @@ fieldset label {
     color: #555;
 }
 
-/* 🌸 Champs larges */
-.full-width,
 .form-actions,
 fieldset {
     grid-column: 1 / -1;
-}
-
-/* 🌸 Bouton d’envoi */
-.btn-submit {
-    background-color: var(--rose);
-    color: white;
-    border: none;
-    padding: 0.9rem 2.5rem;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(236, 31, 122, 0.3);
-    transition: all 0.3s ease;
 }
 
 .btn-submit:hover {
     background-color: #c7156d;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(236, 31, 122, 0.4);
-}
-
-.form-actions {
-    text-align: center;
-    margin-top: 2rem;
 }
 
 /* 🌸 Responsive */
@@ -419,3 +361,17 @@ fieldset {
 
 }
 
+.text-rose { color: var(--rose) !important; }
+.card-rose-border { border-left: 5px solid var(--rose) !important; }
+
+#svg_departements path {
+    cursor: pointer;
+    transition: fill 0.2s ease;
+}
+#svg_departements path:hover {
+    fill: var(--rose) !important; 
+    opacity: 0.9;
+}
+#svg_departements text {
+    pointer-events: none; 
+}
