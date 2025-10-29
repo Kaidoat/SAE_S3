@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
 
       <div class="d-flex gap-3">
-        <a href="#" class="footer-social"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="footer-social"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" class="footer-social"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="footer-social"><i class="bi bi-linkedin"></i></a>
-        <a href="#" class="footer-social"><i class="bi bi-youtube"></i></a>
+        <a href="https://www.facebook.com/people/Les-Blouses-Roses/100064446739294/" class="footer-social"><i class="bi bi-facebook"></i></a>
+        <a href="https://x.com/lesblousesroses" class="footer-social"><i class="bi bi-twitter-x"></i></a>
+        <a href="https://www.instagram.com/lesblousesrosesnational/" class="footer-social"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/les-blouses-roses/?viewAsMember=true" class="footer-social"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.youtube.com/@LESBLOUSESROSESNATIONAL" class="footer-social"><i class="bi bi-youtube"></i></a>
       </div>
 
-      <a href="newsletter.html" class="btn btn-outline-light newsletter-btn fw-bold">S'abonner à la NEWSLETTER</a>
+      <a href="#" class="btn btn-outline-light newsletter-btn fw-bold">S'abonner à la NEWSLETTER</a>
 
     </div>
   </div>
