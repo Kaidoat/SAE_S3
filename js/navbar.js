@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
 
-    <div class="container header-bottom-content d-flex flex-column align-items-center py-3">
+    <div class="container header-bottom-content d-flex flex-column align-items-center">
       <a href="index.html" class="logo-link logo-absolute" aria-label="Retour à l’accueil"> 
             <img src="img/logo_sans_fond.png" alt="Les Blouses Roses" style="max-width: 150px; height: auto;"> 
         </a>
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <li class="nav-item"><a class="nav-link active" href="#">Qui sommes nous ?</a></li>
           <li class="nav-item"><a class="nav-link" href="NousSoutenir.html">Nous soutenir</a></li>
           <li class="nav-item"><a class="nav-link" href="faire-appel-a-nous.html">Faire appel à nous</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Espace presse</a></li>
+          <li class="nav-item"><a class="nav-link" href="InfoBen.html">Nos bénévoles</a></li>
           <li class="nav-item"><a class="nav-link" href="Actualite.html">Actualités</a></li>
         </ul>
       </div>
