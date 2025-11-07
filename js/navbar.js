@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cta-bubbles-container d-none d-md-flex gap-3 me-5">
         <a href="#" class="cta-bubble bubble--s rounded-circle"><span>BOITE A<br>OUTILS</span></a>
         <a href="Benevole.html" class="cta-bubble bubble--m rounded-circle"><span>DEVENIR<br>BENEVOLE</span></a>
-        <a href="#" class="cta-bubble bubble--l rounded-circle"><span>JE FAIS<br>UN DON</span></a>
+        <a href="faireDon.html" class="cta-bubble bubble--l rounded-circle"><span>JE FAIS<br>UN DON</span></a>
       </div>
     </div>
 
