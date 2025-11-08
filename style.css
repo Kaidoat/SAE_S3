@@ -402,3 +402,14 @@ fieldset {
     background-color: var(--roseF);
     border-color: var(--roseF);
 }
+
+.text-rose { color: #EC1F7A !important; }
+.bg-rose { background-color: #EC1F7A !important; }
+.btn-outline-rose {
+    color: #EC1F7A;
+    border-color: #EC1F7A;
+}
+.btn-outline-rose:hover {
+    background-color: #EC1F7A;
+    color: white;
+}
