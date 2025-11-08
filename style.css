@@ -413,3 +413,17 @@ fieldset {
     background-color: #EC1F7A;
     color: white;
 }
+.image{
+    width: 500px;
+    height: 400px;
+}
+
+.grp .imageR{
+    width: 400px;
+    height: 300px;
+}
+
+#chiffres .image{
+    width: 1100px;
+    height: 500px;
+}
