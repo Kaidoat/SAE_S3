@@ -8,15 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const formLogin  = document.getElementById("internalLoginForm");
     const idInput    = document.getElementById("identifiantInterne");
     const pwdInput   = document.getElementById("motdepasseInterne");
-    const rememberMe = document.getElementById("rememberMe");
     const forgotLink = document.getElementById("forgotPwdLink");
     const errorMsg   = document.getElementById("internalError");
     const successMsg = document.getElementById("internalSuccess");
-
     const btnShowDemande = document.getElementById("showDemande");
     const btnBack        = document.getElementById("backToLogin");
     const logoutBtn      = document.getElementById("btnLogoutInterne");
     const userName       = document.getElementById("userInternal");
+
+    // --- Si un utilisateur est déjà connecté (sessionStorage), on garde la connexion
+    const currentUser = sessionStorage.getItem("internalUser");
+    if (currentUser) {
+        showInternalContent(currentUser);
+    }
 
     // --- Aller à la demande d’identification
     btnShowDemande.addEventListener("click", (e) => {
@@ -40,16 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (id === "Chaïma" && pwd === "test") {
             sessionStorage.setItem("internalUser", id);
-            if (rememberMe.checked) localStorage.setItem("rememberedUser", id);
-            sectionConnexion.classList.add("d-none");
-            sectionContent.classList.remove("d-none");
-            userName.textContent = id;
+            showInternalContent(id);
         } else {
             errorMsg.textContent = "❌ Identifiant ou mot de passe incorrect.";
             errorMsg.classList.remove("d-none");
             successMsg.classList.add("d-none");
         }
     });
+
+    // --- Fonction d’affichage du tableau de bord
+    function showInternalContent(user) {
+        sectionConnexion.classList.add("d-none");
+        sectionDemande.classList.add("d-none");
+        sectionContent.classList.remove("d-none");
+        userName.textContent = user;
+        errorMsg.classList.add("d-none");
+        successMsg.classList.add("d-none");
+    }
 
     // --- Mot de passe oublié
     forgotLink.addEventListener("click", (e) => {
@@ -59,10 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
         errorMsg.classList.add("d-none");
     });
 
-    // --- Déconnexion
+    // --- Déconnexion (efface seulement la session)
     logoutBtn.addEventListener("click", () => {
         sessionStorage.removeItem("internalUser");
-        localStorage.removeItem("rememberedUser");
         sectionContent.classList.add("d-none");
         sectionConnexion.classList.remove("d-none");
     });
@@ -99,20 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
             captchaData = [];
             captchaBox.innerHTML = "";
 
-            // Choisit d'abord la couleur cible
             targetColor = colorList[Math.floor(Math.random() * colorList.length)];
-
-            // Génère 6 lettres
             const letters = generateLetters(6);
             let hasTargetColor = false;
 
             for (let i = 0; i < letters.length; i++) {
                 let color = colorList[Math.floor(Math.random() * colorList.length)];
-
-                // Si c’est la dernière lettre et qu’on n’a toujours pas la couleur cible, on l’impose
                 if (i === letters.length - 1 && !hasTargetColor) color = targetColor;
-
-                // Si la couleur correspond à la cible, on marque que la couleur existe
                 if (color === targetColor) hasTargetColor = true;
 
                 captchaData.push({ char: letters[i], color });
@@ -124,11 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 captchaBox.appendChild(span);
             }
 
-            // Met à jour la consigne
             captchaInstruction.innerHTML = `
-    Pour valider votre formulaire, saisissez les lettres sur fond 
-    <strong style="color:${targetColor}">${colorNames[targetColor]}</strong>.
-  `;
+        Pour valider votre formulaire, saisissez les lettres sur fond 
+        <strong style="color:${targetColor}">${colorNames[targetColor]}</strong>.
+      `;
 
             captchaInput.value = "";
         }
@@ -167,10 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            showAlert(
-                "success",
-                "✅ Votre demande a été envoyée. Un e-mail vous sera adressé avec votre code et votre mot de passe."
-            );
+            showAlert("success", "✅ Votre demande a été envoyée. Un e-mail vous sera adressé avec votre code et votre mot de passe.");
             formDemande.reset();
             displayCaptcha();
         });
