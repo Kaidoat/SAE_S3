@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
 
       <div class="access-pills d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
-        <a class="pill-custom d-flex align-items-center" href="#">
+        <a class="pill-custom d-flex align-items-center" href="espace-interne.html">
           <span class="pill-icon pill-icon-blue me-2" aria-hidden="true"><i class="bi bi-person"></i></span>
           <span>Mon espace interne</span>
         </a>
-        <a class="pill-custom d-flex align-items-center" href="#">
+        <a class="pill-custom d-flex align-items-center" href="espacedon.html">
           <span class="pill-icon pill-icon-pink me-2" aria-hidden="true"><i class="bi bi-person-fill"></i></span>
           <span>Mon espace donateur</span>
         </a>
