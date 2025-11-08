@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="col-md-6">
           <ul class="list-unstyled mb-0">
-            <li><a href="#" class="text-light text-decoration-none">Mentions légales</a></li>
+            <li><a href="mentions-legales.html" class="text-light text-decoration-none">Mentions légales</a></li>
             <li><a href="#" class="text-light text-decoration-none">Politique de cookies</a></li>
             <li><a href="#" class="text-light text-decoration-none">Protection des données personnelles</a></li>
             <li><a href="#" class="text-light text-decoration-none">Préférences de cookies</a></li>
