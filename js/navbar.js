@@ -48,8 +48,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <script id="search-data" type="application/json">
     [
-        {"url":"index.html","title":"Accueil","content":"Bienvenue sur le site Les Blouses Roses"},
-        {"url":"benevole.html","title":"Devenir bénévole","content":"Informations pour devenir bénévole"}
+      {"url":"index.html","title":"Accueil","content":"Bienvenue sur le site des Blouses Roses."},
+      {"url":"Actualite.html","title":"Actualités","content":"Dernières nouvelles, événements et actions de l’association."},
+      {"url":"Benevole.html","title":"Devenir bénévole","content":"Informations pour rejoindre l’association et devenir bénévole."},
+      {"url":"InfoBen.html","title":"Informations bénévoles","content":"Ressources et outils destinés aux bénévoles des Blouses Roses."},
+      {"url":"NousSoutenir.html","title":"Nous soutenir","content":"Faire un don, devenir partenaire ou mécène des Blouses Roses."},
+      {"url":"accessibilite.html","title":"Accessibilité","content":"Informations sur l’accessibilité du site et nos engagements."},
+      {"url":"boiteOutils.html","title":"Boîte à outils","content":"Documents et ressources utiles pour les bénévoles et partenaires."},
+      {"url":"espace-interne.html","title":"Espace interne","content":"Accès réservé aux membres et bénévoles connectés."},
+      {"url":"espacedon.html","title":"Espace donateur","content":"Accédez à votre espace donateur et suivez vos contributions."},
+      {"url":"faire-appel-a-nous.html","title":"Faire appel à nous","content":"Comment solliciter l’intervention des Blouses Roses dans votre établissement."},
+      {"url":"faireDon.html","title":"Faire un don","content":"Effectuer un don en ligne pour soutenir nos actions."},
+      {"url":"infoGenerales.html","title":"Informations générales","content":"Données générales et présentation de l’association."},
+      {"url":"mentions-legales.html","title":"Mentions légales","content":"Mentions légales et informations sur l’éditeur du site."},
+      {"url":"plan-site.html","title":"Plan du site","content":"Carte complète du site Les Blouses Roses."},
+      {"url":"politique-cookies.html","title":"Politique de cookies","content":"Détails sur notre politique d’utilisation des cookies."},
+      {"url":"preferences-cookies.html","title":"Préférences de cookies","content":"Gérez vos préférences en matière de cookies."},
+      {"url":"protection-donnees.html","title":"Protection des données","content":"Politique de confidentialité et protection des données personnelles."}
     ]
     </script>
 
