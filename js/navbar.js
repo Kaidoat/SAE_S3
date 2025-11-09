@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="collapse navbar-collapse justify-content-center" id="main-navbar">
         <ul class="navbar-nav text-uppercase fw-semibold text-center">
           <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door-fill"></i></a></li>
-          <li class="nav-item"><a class="nav-link active" href="#">Qui sommes nous ?</a></li>
+          <li class="nav-item"><a class="nav-link active" href="infoGenerales.html">Qui sommes nous ?</a></li>
           <li class="nav-item"><a class="nav-link" href="NousSoutenir.html">Nous soutenir</a></li>
           <li class="nav-item"><a class="nav-link" href="faire-appel-a-nous.html">Faire appel à nous</a></li>
           <li class="nav-item"><a class="nav-link" href="InfoBen.html">Nos bénévoles</a></li>
           <li class="nav-item"><a class="nav-link" href="Actualite.html">Actualités</a></li>
-          <li class="nav-item"><a class="nav-link" href="infoGenerales.html">Informations Générales</a></li>
+          
         </ul>
       </div>
 
