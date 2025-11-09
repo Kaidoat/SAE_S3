@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <li class="nav-item"><a class="nav-link" href="faire-appel-a-nous.html">Faire appel à nous</a></li>
           <li class="nav-item"><a class="nav-link" href="InfoBen.html">Nos bénévoles</a></li>
           <li class="nav-item"><a class="nav-link" href="Actualite.html">Actualités</a></li>
-          <li class="nav-item"><a class="nav-link" href="infoGenerale.html">Informations Générales</a></li>
+          <li class="nav-item"><a class="nav-link" href="infoGenerales.html">Informations Générales</a></li>
         </ul>
       </div>
 
