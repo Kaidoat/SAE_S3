@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once __DIR__ . '/../config/db.php';
 
-if (!isset($_SESSION['utilisateur'])) {
-    header('Location: login.php');
+if (!isset($_SESSION['utilisateur']) ||
+    $_SESSION['utilisateur']['role'] !== 'admin') {
+    header('Location: /index.php');
     exit;
 }

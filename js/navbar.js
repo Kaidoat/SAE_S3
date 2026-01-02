@@ -94,4 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('navbar-container').innerHTML = navbarHTML;
   document.dispatchEvent(new Event('navbar-loaded'));
 
+    if (userRole === 'admin') {
+        const adminLink = document.createElement('a');
+        adminLink.href = '/back/index.php';
+        adminLink.textContent = 'Administration';
+        document.querySelector('nav').appendChild(adminLink);
+    }
+
+
 });
+
