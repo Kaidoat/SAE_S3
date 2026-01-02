@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plan du site — Les Blouses Roses numériques</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-light">
+<main class="container py-5">
+    <h1 class="text-center text-rose mb-5">Plan du site</h1>
+
+    <section class="bg-white p-4 rounded-4 shadow-sm">
+        <p class="mb-4">
+            Voici la structure complète du site <strong>Les Blouses Roses numériques</strong>,
+            réalisé dans le cadre du <strong>BUT Informatique</strong> (Université Paris Cité – Groupe 205, année universitaire 2025–2026).<br>
+            Ce projet a été conçu par <strong>Chaïma Kherbach, Celtans Dezan, Nicolas Chanez et Eva Souidaray</strong>
+            sous la supervision de <strong>M. Fessy</strong> et <strong>M. Guistignano</strong>.
+        </p>
+
+        <hr>
+
+        <!-- Accueil -->
+        <h2 class="h4 text-rose mt-4">🏠 Accueil</h2>
+        <ul>
+            <li><a href="index.php" class="text-decoration-none text-dark">Page d’accueil</a></li>
+            <li><a href="Actualite.php" class="text-decoration-none text-dark">Actualités</a></li>
+            <li><a href="asso.html" class="text-decoration-none text-dark">L’association</a></li>
+            <li><a href="NousSoutenir.php" class="text-decoration-none text-dark">Nous soutenir</a></li>
+        </ul>
+
+        <!-- Bénévolat -->
+        <h2 class="h4 text-rose mt-4">🤝 Bénévolat</h2>
+        <ul>
+            <li><a href="Benevole.php" class="text-decoration-none text-dark">Devenir bénévole</a></li>
+            <li><a href="InfoBen.php" class="text-decoration-none text-dark">Informations bénévoles</a></li>
+        </ul>
+
+        <!-- Dons -->
+        <h2 class="h4 text-rose mt-4">💝 Dons & Soutien</h2>
+        <ul>
+            <li><a href="faireDon.php" class="text-decoration-none text-dark">Faire un don</a></li>
+            <li><a href="espacedon.php" class="text-decoration-none text-dark">Espace donateur</a></li>
+            <li><a href="faire-appel-a-nous.php" class="text-decoration-none text-dark">Faire appel à nous</a></li>
+        </ul>
+
+        <!-- Espace interne -->
+        <h2 class="h4 text-rose mt-4">👩‍💻 Espace Interne</h2>
+        <ul>
+            <li><a href="espace-interne.php" class="text-decoration-none text-dark">Connexion interne</a></li>
+        </ul>
+        <!-- Pages légales -->
+        <h2 class="h4 text-rose mt-4">⚙️ Pages légales</h2>
+        <ul>
+            <li><a href="mentions-legales.php" class="text-decoration-none text-dark">Mentions légales</a></li>
+            <li><a href="politique-cookies.php" class="text-decoration-none text-dark">Politique de cookies</a></li>
+            <li><a href="preferences-cookies.php" class="text-decoration-none text-dark">Préférences de cookies</a></li>
+            <li><a href="protection-donnees.php" class="text-decoration-none text-dark">Protection des données personnelles</a></li>
+            <li><a href="accessibilite.php" class="text-decoration-none text-dark">Accessibilité</a></li>
+        </ul>
+
+        <!-- Contact -->
+        <h2 class="h4 text-rose mt-4">📞 Contact</h2>
+        <ul>
+            <li>Email : <a href="mailto:projet-blousesroses@paris-cite.fr" class="text-decoration-none text-dark">projet-blousesroses@paris-cite.fr</a></li>
+            <li>Université Paris Cité – IUT de Paris Rives de Seine</li>
+        </ul>
+
+        <hr>
+
+        <p class="text-muted small text-center mt-4">
+            © 2025–2026 — Projet universitaire <strong>Les Blouses Roses numériques</strong> —
+            BUT Informatique, Université Paris Cité, Groupe 205.<br>
+            Réalisé par <strong>Chaïma Kherbach</strong>, <strong>Celtans Dezan</strong>, <strong>Nicolas Chanez</strong> et <strong>Eva Souidaray</strong> —
+            Sous la supervision de <strong>M. Fessy</strong> et <strong>M. Guistignano</strong>.
+        </p>
+    </section>
+
+    <div class="text-center mt-4">
+        <a href="index.php" class="btn btn-outline-rose">
+            <i class="bi bi-arrow-left"></i> Retour à l'accueil
+        </a>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

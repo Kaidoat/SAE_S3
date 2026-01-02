@@ -5,23 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="header-top-wrapper">
     <div class="ribbon-bar">
       <div class="cta-bubbles-container d-none d-md-flex gap-3 me-5">
-        <a href="boiteOutils.html" class="cta-bubble bubble--s rounded-circle"><span>BOITE A<br>OUTILS</span></a>
-        <a href="Benevole.html" class="cta-bubble bubble--m rounded-circle"><span>DEVENIR<br>BENEVOLE</span></a>
-        <a href="faireDon.html" class="cta-bubble bubble--l rounded-circle"><span>JE FAIS<br>UN DON</span></a>
+        <a href="boiteOutils.php" class="cta-bubble bubble--s rounded-circle"><span>BOITE A<br>OUTILS</span></a>
+        <a href="Benevole.php" class="cta-bubble bubble--m rounded-circle"><span>DEVENIR<br>BENEVOLE</span></a>
+        <a href="faireDon.php" class="cta-bubble bubble--l rounded-circle"><span>JE FAIS<br>UN DON</span></a>
       </div>
     </div>
 
     <div class="container header-bottom-content d-flex flex-column align-items-center">
-      <a href="index.html" class="logo-link logo-absolute" aria-label="Retour à l’accueil"> 
+      <a href="index.php" class="logo-link logo-absolute" aria-label="Retour à l’accueil"> 
             <img src="img/logo_sans_fond.png" alt="Les Blouses Roses" style="max-width: 150px; height: auto;"> 
         </a>
 
       <div class="access-pills d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
-        <a class="pill-custom d-flex align-items-center" href="espace-interne.html">
+        <a class="pill-custom d-flex align-items-center" href="espace-interne.php">
           <span class="pill-icon pill-icon-blue me-2" aria-hidden="true"><i class="bi bi-person"></i></span>
           <span>Mon espace interne</span>
         </a>
-        <a class="pill-custom d-flex align-items-center" href="espacedon.html">
+        <a class="pill-custom d-flex align-items-center" href="espacedon.php">
           <span class="pill-icon pill-icon-pink me-2" aria-hidden="true"><i class="bi bi-person-fill"></i></span>
           <span>Mon espace donateur</span>
         </a>
@@ -75,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       <div class="collapse navbar-collapse justify-content-center" id="main-navbar">
         <ul class="navbar-nav text-uppercase fw-semibold text-center">
-          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door-fill"></i></a></li>
-          <li class="nav-item"><a class="nav-link active" href="infoGenerales.html">Qui sommes nous ?</a></li>
-          <li class="nav-item"><a class="nav-link" href="NousSoutenir.html">Nous soutenir</a></li>
-          <li class="nav-item"><a class="nav-link" href="faire-appel-a-nous.html">Faire appel à nous</a></li>
-          <li class="nav-item"><a class="nav-link" href="InfoBen.html">Nos bénévoles</a></li>
-          <li class="nav-item"><a class="nav-link" href="Actualite.html">Actualités</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php"><i class="bi bi-house-door-fill"></i></a></li>
+          <li class="nav-item"><a class="nav-link active" href="infoGenerales.php">Qui sommes nous ?</a></li>
+          <li class="nav-item"><a class="nav-link" href="NousSoutenir.php">Nous soutenir</a></li>
+          <li class="nav-item"><a class="nav-link" href="faire-appel-a-nous.php">Faire appel à nous</a></li>
+          <li class="nav-item"><a class="nav-link" href="InfoBen.php">Nos bénévoles</a></li>
+          <li class="nav-item"><a class="nav-link" href="Actualite.php">Actualités</a></li>
           
         </ul>
       </div>
@@ -88,8 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </nav>
 
+
 </header>
   `;
   document.getElementById('navbar-container').innerHTML = navbarHTML;
   document.dispatchEvent(new Event('navbar-loaded'));
+
 });

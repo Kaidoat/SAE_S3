@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="col-md-6">
           <ul class="list-unstyled mb-0">
-            <li><a href="mentions-legales.html" class="text-light text-decoration-none">Mentions légales</a></li>
-            <li><a href="politique-cookies.html" class="text-light text-decoration-none">Politique de cookies</a></li>
-            <li><a href="protection-donnees.html" class="text-light text-decoration-none">Protection des données personnelles</a></li>
-            <li><a href="preferences-cookies.html" class="text-light text-decoration-none">Préférences de cookies</a></li>
-            <li><a href="accessibilite.html" class="text-light text-decoration-none">Accessibilité</a></li>
-            <li><a href="plan-site.html" class="text-light text-decoration-none">Plan du site</a></li>
+            <li><a href="mentions-legales.php" class="text-light text-decoration-none">Mentions légales</a></li>
+            <li><a href="politique-cookies.php" class="text-light text-decoration-none">Politique de cookies</a></li>
+            <li><a href="protection-donnees.php" class="text-light text-decoration-none">Protection des données personnelles</a></li>
+            <li><a href="preferences-cookies.php" class="text-light text-decoration-none">Préférences de cookies</a></li>
+            <li><a href="accessibilite.php" class="text-light text-decoration-none">Accessibilité</a></li>
+            <li><a href="plan-site.php" class="text-light text-decoration-none">Plan du site</a></li>
           </ul>
         </div>
 

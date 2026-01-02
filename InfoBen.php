@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -205,7 +206,7 @@
         <div class="container">
             <h2>Prêt(e) à rejoindre l'aventure ?</h2>
             <p class="lead mb-4">Rejoignez nos 4 400 bénévoles et offrez sourires et bonne humeur.</p>
-            <a href="Benevole.html" class="btn btn-rose btn-lg"><i class="bi bi-box-arrow-in-right me-2"></i> Je deviens bénévole</a>
+            <a href="Benevole.php" class="btn btn-rose btn-lg"><i class="bi bi-box-arrow-in-right me-2"></i> Je deviens bénévole</a>
         </div>
     </section>
 

@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 💝 Redirection vers la page de don
     // ==========================
     btnReDon?.addEventListener("click", () => {
-        window.location.href = "faireDon.html";
+        window.location.href = "faireDon.php";
     });
 
     // ==========================
