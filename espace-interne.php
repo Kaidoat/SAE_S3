@@ -1,18 +1,23 @@
+<?php
+// Protection de l’espace interne
+require_once 'back/auth-interne.php';
+?>
 
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Les Blouses Roses — Accueil</title>
+    <title>Les Blouses Roses — Espace interne</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Feuille de style personnalisée -->
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body id="top">
 
 <!-- Lien d’évitement -->
@@ -22,279 +27,147 @@
 <div id="navbar-container"></div>
 
 <!-- ================= CONTENU PRINCIPAL ================= -->
-<main id="contenu">
-    <!-- ==================== FORMULAIRE DE CONNEXION ==================== -->
-    <section class="contact-section" id="connexion-espace">
-        <h2>Espace Interne — Accès sécurisé</h2>
-        <p class="text-center text-muted mb-4">
-            Connectez-vous à votre espace professionnel (bénévoles, administrateurs, direction).
-        </p>
+<main id="contenu" class="container my-5">
 
-        <div class="container d-flex justify-content-center">
-            <div class="card shadow-lg p-4 rounded-4" style="max-width: 420px; width: 100%;">
-                <form id="internalLoginForm" novalidate>
-                    <div class="mb-3">
-                        <label for="identifiantInterne" class="form-label">Identifiant</label>
-                        <input type="text" class="form-control" id="identifiantInterne" placeholder="Votre identifiant" required />
-                    </div>
+    <h2 class="text-center mb-5">
+        Bienvenue <span class="text-rose"><?php echo htmlspecialchars($_SESSION['user']); ?></span> 🌷
+    </h2>
 
-                    <div class="mb-3">
-                        <label for="motdepasseInterne" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="motdepasseInterne" placeholder="Votre mot de passe" required />
-                    </div>
-
-                    <div class="d-flex justify-content-end align-items-center mb-3">
-                        <a href="#" id="forgotPwdLink" class="text-decoration-none small text-rose">Mot de passe oublié ?</a>
-                    </div>
-
-
-                    <button type="submit" id="btnConnexion" class="btn btn-rose w-100 mb-3">Se connecter</button>
-
-                    <div class="text-center">
-                        <a href="#" id="showDemande" class="text-decoration-none small text-rose">📄 Demande d’identification</a>
-                    </div>
-
-                    <p id="internalError" class="text-danger text-center fw-semibold d-none"></p>
-                    <p id="internalSuccess" class="text-success text-center fw-semibold d-none"></p>
-                </form>
+    <!-- ================= DASHBOARD ================= -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-calendar-event display-5 text-rose"></i>
+                    <h5 class="mt-2">Prochain événement</h5>
+                    <p class="text-muted mb-1">Atelier à l’hôpital Sainte-Marie</p>
+                    <small class="text-secondary">12 nov. 2025 — 14 h 00</small>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- ==================== FORMULAIRE DE DEMANDE D’IDENTIFICATION ==================== -->
-    <section class="contact-section d-none" id="demande-identification">
-        <h2>Demande d’identification</h2>
-        <p class="text-center text-muted mb-4">
-            Remplissez le formulaire ci-dessous.<br>
-            Un code d'identification et un mot de passe vous seront attribués par mail.
-        </p>
-
-        <form id="form-identification" class="container" novalidate>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label" for="nom">Nom *</label>
-                    <input type="text" class="form-control" id="nom" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="prenom">Prénom *</label>
-                    <input type="text" class="form-control" id="prenom" required />
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label" for="adresse">Adresse *</label>
-                    <input type="text" class="form-control" id="adresse" required />
-                </div>
-
-                <div class="col-md-4">
-                    <label class="form-label" for="cp">Code postal *</label>
-                    <input type="text" class="form-control" id="cp" maxlength="5" required />
-                </div>
-                <div class="col-md-8">
-                    <label class="form-label" for="ville">Ville *</label>
-                    <input type="text" class="form-control" id="ville" required />
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label" for="tel">Téléphone *</label>
-                    <input type="tel" class="form-control" id="tel" placeholder="06 12 34 56 78" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="email">Email *</label>
-                    <input type="email" class="form-control" id="email" required />
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label" for="comite">Comité *</label>
-                    <select id="comite" class="form-select" required>
-                        <option value="" selected disabled>Choisissez un comité</option>
-                        <option>Les Blouses Roses - ANGERS</option>
-                        <option>Les Blouses Roses - ANNECY</option>
-                        <option>Les Blouses Roses - BORDEAUX</option>
-                        <option>Les Blouses Roses - LILLE</option>
-                        <option>Les Blouses Roses - MARSEILLE</option>
-                        <option>Les Blouses Roses - NANTES</option>
-                        <option>Les Blouses Roses - PARIS</option>
-                        <option>Les Blouses Roses - STRASBOURG</option>
-                        <option>Les Blouses Roses - TOULOUSE</option>
-                        <option>Les Blouses Roses - TOURS</option>
-                    </select>
-                </div>
-
-                <!-- Captcha -->
-                <div class="col-12">
-                    <label class="form-label d-block" id="captcha-instruction">
-                        Pour valider votre formulaire, veuillez suivre l’instruction ci-dessous :
-                    </label>
-                    <div id="captcha-box" class="d-flex gap-2 flex-wrap mb-2"></div>
-                    <div class="input-group">
-                        <span class="input-group-text">Saisissez les lettres</span>
-                        <input type="text" id="captcha-input" class="form-control" required />
-                        <button type="button" id="captcha-refresh" class="btn btn-outline-secondary">↻</button>
-                    </div>
-                </div>
-
-                <div class="col-12 d-flex flex-wrap gap-2 align-items-center mt-3">
-                    <button type="submit" class="btn btn-rose">Envoyer ma demande</button>
-                    <a href="#" id="backToLogin" class="text-decoration-none small text-rose">⬅️ Retour à la connexion</a>
-                    <span class="small text-muted">(*) champ obligatoire</span>
-                </div>
-
-                <div class="col-12">
-                    <div id="form-alert" class="alert mt-3 d-none" role="alert"></div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-clock-history display-5 text-rose"></i>
+                    <h5 class="mt-2">Heures du mois</h5>
+                    <p class="fw-bold fs-4 text-success mb-0">24 h</p>
+                    <small class="text-secondary">Merci pour ton temps 💖</small>
                 </div>
             </div>
-        </form>
-    </section>
+        </div>
 
-    <!-- ==================== TABLEAU DE BORD APRÈS CONNEXION ==================== -->
-    <section id="internalContent" class="container d-none my-5">
-        <h2 class="text-center mb-5">Bienvenue <span id="userInternal"></span> 🌷</h2>
-
-        <div class="row g-4 mb-4">
-            <div class="col-md-3 col-sm-6">
-                <div class="card text-center shadow-sm border-0 h-100">
-                    <div class="card-body">
-                        <i class="bi bi-calendar-event display-5 text-rose"></i>
-                        <h5 class="mt-2">Prochain événement</h5>
-                        <p class="text-muted mb-1">Atelier à l’hôpital Sainte-Marie</p>
-                        <small class="text-secondary">12 nov. 2025 — 14 h 00</small>
-                    </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-chat-dots display-5 text-rose"></i>
+                    <h5 class="mt-2">Messages non lus</h5>
+                    <p class="fw-bold fs-4 text-warning mb-0">3</p>
+                    <small class="text-secondary">Voir la messagerie</small>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="card text-center shadow-sm border-0 h-100">
-                    <div class="card-body">
-                        <i class="bi bi-clock-history display-5 text-rose"></i>
-                        <h5 class="mt-2">Heures du mois</h5>
-                        <p class="fw-bold fs-4 text-success mb-0">24 h</p>
-                        <small class="text-secondary">Merci pour ton temps 💖</small>
-                    </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <i class="bi bi-bar-chart-line display-5 text-rose"></i>
+                    <h5 class="mt-2">Interventions</h5>
+                    <p class="fw-bold fs-4 text-primary mb-0">15</p>
+                    <small class="text-secondary">Ce mois-ci</small>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="card text-center shadow-sm border-0 h-100">
-                    <div class="card-body">
-                        <i class="bi bi-chat-dots display-5 text-rose"></i>
-                        <h5 class="mt-2">Messages non lus</h5>
-                        <p class="fw-bold fs-4 text-warning mb-0">3</p>
-                        <small class="text-secondary">Voir la messagerie</small>
-                    </div>
+    <!-- ================= SECTIONS ================= -->
+    <div class="row g-4">
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-rose text-white fw-bold">
+                    <i class="bi bi-calendar-week me-2"></i>Mon planning
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">🩺 Atelier dessin — CHU Lille — 10 nov.</li>
+                        <li class="list-group-item">👵 Visite EHPAD — 13 nov.</li>
+                        <li class="list-group-item">🎨 Atelier créatif — 15 nov.</li>
+                    </ul>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="card text-center shadow-sm border-0 h-100">
-                    <div class="card-body">
-                        <i class="bi bi-bar-chart-line display-5 text-rose"></i>
-                        <h5 class="mt-2">Interventions</h5>
-                        <p class="fw-bold fs-4 text-primary mb-0">15</p>
-                        <small class="text-secondary">Ce mois-ci</small>
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-rose text-white fw-bold">
+                    <i class="bi bi-stars me-2"></i>Événements à venir
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>🌷 Formation “Accueil des enfants” — 20 nov.</li>
+                        <li>🎁 Collecte de jouets — 25 nov.</li>
+                        <li>👥 Réunion régionale — 2 déc.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-rose text-white fw-bold">
+                    <i class="bi bi-envelope-paper-heart me-2"></i>Messagerie interne
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <strong>Direction</strong> — Merci pour ta participation 🎁
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <strong>Équipe</strong> — Réunion le 12/11
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-rose text-white fw-bold">
-                        <i class="bi bi-calendar-week me-2"></i>Mon planning
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted">Aperçu de tes prochaines activités :</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">🩺 Atelier dessin — CHU Lille — 10 nov.</li>
-                            <li class="list-group-item">👵 Visite EHPAD — 13 nov.</li>
-                            <li class="list-group-item">🎨 Atelier créatif — 15 nov.</li>
-                        </ul>
-                        <div class="text-end mt-3">
-                            <a href="#" class="btn btn-sm btn-outline-rose">Voir tout le planning</a>
-                        </div>
-                    </div>
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100 text-center">
+                <div class="card-header bg-rose text-white fw-bold">
+                    <i class="bi bi-person-circle me-2"></i>Mon profil
                 </div>
-            </div>
+                <div class="card-body">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png"
+                         class="rounded-circle mb-3"
+                         width="80"
+                         height="80"
+                         alt="profil">
 
-            <div class="col-lg-6">
-                <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-rose text-white fw-bold">
-                        <i class="bi bi-stars me-2"></i>Prochains événements
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-3">
-                            <li class="mb-2"><i class="bi bi-heart-fill text-rose me-2"></i>Formation “Accueil des enfants” — 20 nov.</li>
-                            <li class="mb-2"><i class="bi bi-flower1 text-rose me-2"></i>Collecte de jouets — 25 nov.</li>
-                            <li><i class="bi bi-people-fill text-rose me-2"></i>Réunion régionale — 2 déc.</li>
-                        </ul>
-                        <div class="text-end">
-                            <a href="#" class="btn btn-sm btn-outline-rose">Tout voir</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <h5><?php echo htmlspecialchars($_SESSION['user']); ?></h5>
+                    <p class="text-muted">Membre de l’association</p>
 
-            <div class="col-lg-6">
-                <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-rose text-white fw-bold">
-                        <i class="bi bi-envelope-paper-heart me-2"></i>Messagerie interne
-                    </div>
-                    <div class="card-body">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <strong>Direction</strong> — Merci pour ta participation à la collecte 🎁
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <strong>Équipe Lille</strong> — Réunion de coordination le 12/11
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <strong>Formation</strong> — Nouveaux modules disponibles
-                            </a>
-                        </div>
-                        <div class="text-end mt-3">
-                            <a href="#" class="btn btn-sm btn-outline-rose">Accéder à la messagerie</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card shadow-sm border-0 h-100">
-                    <div class="card-header bg-rose text-white fw-bold">
-                        <i class="bi bi-person-circle me-2"></i>Mon profil
-                    </div>
-                    <div class="card-body text-center">
-                        <img src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png" class="rounded-circle mb-3" width="80" height="80" alt="profil">
-                        <h5 class="mb-0">Chaïma Kherbach</h5>
-                        <small class="text-muted">Comité de Lille</small>
-                        <hr>
-                        <p class="text-muted mb-1"><i class="bi bi-envelope me-2"></i>chaima.k@example.com</p>
-                        <p class="text-muted"><i class="bi bi-telephone me-2"></i>06 12 34 56 78</p>
-                        <a href="#" class="btn btn-sm btn-outline-rose">Modifier mon profil</a>
-                    </div>
+                    <a href="#" class="btn btn-sm btn-outline-rose">Modifier mon profil</a>
                 </div>
             </div>
         </div>
 
-        <div class="text-center mt-5">
-            <button id="btnLogoutInterne" class="btn btn-outline-danger">Se déconnecter</button>
-        </div>
-    </section>
+    </div>
+
+    <!-- ================= LOGOUT ================= -->
+    <div class="text-center mt-5">
+        <a href="logout.php" class="btn btn-outline-danger">
+            Se déconnecter
+        </a>
+    </div>
+
 </main>
 
 <div id="footer-container"></div>
 
-<!-- ================= BOUTON RETOUR HAUT ================= -->
-<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3" tabindex="-1" aria-label="Revenir en haut">
-    <i class="bi bi-arrow-up"></i>
-</a>
-
 <!-- ================= JS ================= -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/navbar.js"></script>
-<script src="js/Search.js"></script>
 <script src="js/footer.js"></script>
-<script src="js/interne.js"></script>
+
 </body>
 </html>
