@@ -1,8 +1,14 @@
 <?php
-// Protection de l’espace interne
-require_once 'back/auth-interne.php';
-?>
+// ===================================
+// 🔒 PROTECTION DE L’ESPACE INTERNE
+// ===================================
+session_start();
 
+if (!isset($_SESSION['user'])) {
+    header('Location: login-interne.php');
+    exit;
+}
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -30,11 +36,14 @@ require_once 'back/auth-interne.php';
 <main id="contenu" class="container my-5">
 
     <h2 class="text-center mb-5">
-        Bienvenue <span class="text-rose"><?php echo htmlspecialchars($_SESSION['user']); ?></span> 🌷
+        Bienvenue <span class="text-rose">
+            <?php echo htmlspecialchars($_SESSION['user']); ?>
+        </span> 🌷
     </h2>
 
     <!-- ================= DASHBOARD ================= -->
     <div class="row g-4 mb-4">
+
         <div class="col-md-3 col-sm-6">
             <div class="card text-center shadow-sm border-0 h-100">
                 <div class="card-body">
@@ -78,6 +87,7 @@ require_once 'back/auth-interne.php';
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- ================= SECTIONS ================= -->
@@ -146,7 +156,9 @@ require_once 'back/auth-interne.php';
                     <h5><?php echo htmlspecialchars($_SESSION['user']); ?></h5>
                     <p class="text-muted">Membre de l’association</p>
 
-                    <a href="#" class="btn btn-sm btn-outline-rose">Modifier mon profil</a>
+                    <a href="#" class="btn btn-sm btn-outline-rose">
+                        Modifier mon profil
+                    </a>
                 </div>
             </div>
         </div>
@@ -168,6 +180,8 @@ require_once 'back/auth-interne.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/footer.js"></script>
+<script src="js/interne.js"></script>
+
 
 </body>
 </html>
