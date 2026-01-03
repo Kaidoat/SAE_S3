@@ -231,12 +231,25 @@ CREATE TABLE Partenaire_Subvention (
                                        FOREIGN KEY (id_partenaire) REFERENCES Partenaire(id_partenaire),
                                        FOREIGN KEY (id_subvention) REFERENCES Subvention(id_subvention)
 );
+DROP TABLE IF EXISTS Utilisateur;
+
 CREATE TABLE Utilisateur (
                              id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
                              login VARCHAR(100) UNIQUE NOT NULL,
                              password_hash VARCHAR(255) NOT NULL,
-                             role ENUM('admin', 'responsable') NOT NULL
+                             role ENUM('admin','responsable','benevole') NOT NULL,
+
+                             nom VARCHAR(100) NOT NULL,
+                             prenom VARCHAR(100) NOT NULL,
+                             email VARCHAR(150) NOT NULL,
+                             telephone VARCHAR(20),
+                             adresse TEXT,
+                             code_postal VARCHAR(10),
+
+                             id_ville INT,
+                             FOREIGN KEY (id_ville) REFERENCES Ville(id_ville)
 );
+
 
 
 
@@ -249,7 +262,18 @@ CREATE TABLE Utilisateur (
 INSERT INTO Ville (nom) VALUES
                             ('Metz'),
                             ('Nancy'),
-                            ('Thionville');
+                            ('Thionville'),
+                            ('ANGERS'),
+                            ('ANNECY'),
+                            ('BORDEAUX'),
+                            ('LILLE'),
+                            ('MARSEILLE'),
+                            ('NANTES'),
+                            ('PARIS'),
+                            ('STRASBOURG'),
+                            ('TOULOUSE'),
+                            ('TOURS');
+
 
 -- Compétences
 INSERT INTO Competence (libelle) VALUES
@@ -325,8 +349,58 @@ INSERT INTO Evenement (nom, type_evenement, date_event, logistique) VALUES
 
 
 -- Utilisateurs (login réel)
-INSERT INTO Utilisateur (login, password_hash, role) VALUES
-                                                         ('chaima', 'demo1', 'admin'),
-                                                         ('eva',    'demo2', 'responsable'),
-                                                         ('celthans', 'demo2', 'responsable'),
-                                                         ('nicolas', 'demo2', 'responsable');
+INSERT INTO Utilisateur
+(login, password_hash, role, nom, prenom, email, telephone, adresse, code_postal, id_ville)
+VALUES
+    (
+        'chaima',
+        'demo1',
+        'admin',
+        'Kherbach',
+        'Chaïma',
+        'chaima.kherbach@example.com',
+        '0612345678',
+        '12 rue des Fleurs',
+        '59000',
+        1
+    ),
+
+    (
+        'eva',
+        'demo1',
+        'responsable',
+        'Martin',
+        'Eva',
+        'eva.martin@example.com',
+        '0623456789',
+        '8 avenue Victor Hugo',
+        '75000',
+        2
+    ),
+
+    (
+        'celthans',
+        'demo1',
+        'benevole',
+        'Dupont',
+        'Celthans',
+        'celthans.dupont@example.com',
+        '0634567890',
+        '3 place du Capitole',
+        '31000',
+        3
+    ),
+
+    (
+        'nicolas',
+        'demo1',
+        'benevole',
+        'Durand',
+        'Nicolas',
+        'nicolas.durand@example.com',
+        '0645678901',
+        '25 rue de la République',
+        '44000',
+        4
+    );
+
