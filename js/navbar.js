@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
 
       <div class="access-pills d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
-        <a class="pill-custom d-flex align-items-center" href="espace-interne.php">
+        <a class="pill-custom d-flex align-items-center" href="login-interne.php">
           <span class="pill-icon pill-icon-blue me-2" aria-hidden="true"><i class="bi bi-person"></i></span>
           <span>Mon espace interne</span>
         </a>
