@@ -8,6 +8,9 @@ if (!isset($_SESSION['user'])) {
     header('Location: login-interne.php');
     exit;
 }
+
+// On récupère le rôle pour l'affichage conditionnel
+$user_role = $_SESSION['role'] ?? 'benevole';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -16,23 +19,18 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Les Blouses Roses — Espace interne</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body id="top">
 
-<!-- Lien d’évitement -->
 <a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
 
-<!-- ================= HEADER ================= -->
 <div id="navbar-container"></div>
 
-<!-- ================= CONTENU PRINCIPAL ================= -->
 <main id="contenu" class="container my-5">
 
     <h2 class="text-center mb-5">
@@ -41,7 +39,6 @@ if (!isset($_SESSION['user'])) {
         </span> 🌷
     </h2>
 
-    <!-- ================= DASHBOARD ================= -->
     <div class="row g-4 mb-4">
 
         <div class="col-md-3 col-sm-6">
@@ -90,7 +87,30 @@ if (!isset($_SESSION['user'])) {
 
     </div>
 
-    <!-- ================= SECTIONS ================= -->
+        <div class="row g-4 mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-rose text-white fw-bold">
+                        <i class="bi bi-shield-lock me-2"></i> Administration du site
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <a href="Benevole-panneau.php" class="btn btn-rose text-white w-100 py-3">
+                                    <i class="bi bi-people-fill me-2"></i> Gérer les bénévoles
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="add-actualite.php" class="btn btn-outline-rose w-100 py-3">
+                                    <i class="bi bi-newspaper me-2"></i> Ajouter une actualité
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div class="row g-4">
 
         <div class="col-lg-6">
@@ -140,7 +160,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-6">
             <div class="card shadow-sm border-0 h-100 text-center">
                 <div class="card-header bg-rose text-white fw-bold">
@@ -160,29 +180,11 @@ if (!isset($_SESSION['user'])) {
                         Modifier mon profil
                     </a>
                 </div>
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <p class="mb-2 text-muted">Gérez les membres, les cotisations et les rôles de l'association.</p>
-                            <a href="Benevole-panneau.php" class="btn btn-rose text-white">
-                                <i class="bi bi-people-fill me-2"></i> Gérer les bénévoles
-                            </a>
-                        </div>
-                        <div class="col-md-6 border-start d-none d-md-block">
-                            <ul class="small text-muted">
-                                <li>Ajout, modification et suppression des fiches</li>
-                                <li>Suivi des compétences et disponibilités</li>
-                                <li>Filtrage par ville et par rôle</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- ================= LOGOUT ================= -->
     <div class="text-center mt-5">
         <a href="logout.php" class="btn btn-outline-danger">
             Se déconnecter
@@ -193,7 +195,6 @@ if (!isset($_SESSION['user'])) {
 
 <div id="footer-container"></div>
 
-<!-- ================= JS ================= -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/footer.js"></script>
