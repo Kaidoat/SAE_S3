@@ -140,7 +140,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-
+        
         <div class="col-lg-6">
             <div class="card shadow-sm border-0 h-100 text-center">
                 <div class="card-header bg-rose text-white fw-bold">
@@ -159,6 +159,23 @@ if (!isset($_SESSION['user'])) {
                     <a href="#" class="btn btn-sm btn-outline-rose">
                         Modifier mon profil
                     </a>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <p class="mb-2 text-muted">Gérez les membres, les cotisations et les rôles de l'association.</p>
+                            <a href="Benevole-panneau.php" class="btn btn-rose text-white">
+                                <i class="bi bi-people-fill me-2"></i> Gérer les bénévoles
+                            </a>
+                        </div>
+                        <div class="col-md-6 border-start d-none d-md-block">
+                            <ul class="small text-muted">
+                                <li>Ajout, modification et suppression des fiches</li>
+                                <li>Suivi des compétences et disponibilités</li>
+                                <li>Filtrage par ville et par rôle</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
