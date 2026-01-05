@@ -1,3 +1,28 @@
+<?php
+require 'config/db.php';
+
+// Pagination
+$parPage = 6;
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$offset = ($page - 1) * $parPage;
+
+// Total d’articles
+$total = $pdo->query("SELECT COUNT(*) FROM Actualite")->fetchColumn();
+$pages = ceil($total / $parPage);
+
+// Récupération des actus
+$stmt = $pdo->prepare("
+    SELECT *
+    FROM Actualite
+    ORDER BY date_publication DESC
+    LIMIT :limit OFFSET :offset
+");
+$stmt->bindValue(':limit', $parPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+
+$actus = $stmt->fetchAll();
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -24,92 +49,61 @@
         <h1 class="mb-5 text-center">Toutes nos Actualités</h1>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            
-            <div class="col d-flex">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top-placeholder"><img class="card-img-actualite" src="https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/charleville-meziere-juillet.jpeg"></div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Une nouvelle antenne Blouse Rose à Charleville-Mézières</h5>
-                        <p class="card-text flex-grow-1">Bienvenu au futur comité de Charleville-Mézières !! Le 2 juin 2025, le CH Nord Ardennes et Les Blouses Roses s'engageaient ensemble pour le bien-être des patients.</p>
-                        <p class="card-text"><small class="text-muted">Publié le 02 Juin 2025</small></p>
-                        <a href="https://www.lesblousesroses.asso.fr/fr/actualites/une-nouvelle-antenne-blouse-rose-a-charleville-mezieres" class="btn btn-rose mt-2">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
+            <?php foreach ($actus as $actu): ?>
+                <div class="col d-flex">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top-placeholder">
+                            <img class="card-img-actualite"
+                                 src="<?= htmlspecialchars($actu['image_url']) ?>"
+                                 alt="">
+                        </div>
 
-            <div class="col d-flex">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top-placeholder"><img class="card-img-actualite" src="https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/toulouse-super-heros-grand-coeur-juin.jpeg"></div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Quand les Supers Héros au Grand Cœur rencontrent Les Blouses Roses</h5>
-                        <p class="card-text flex-grow-1">Quand les Supers Héros au Grand Coeur s'associent avec Les Blouses Roses de Toulouse et de Perpignan, ça donne des journées incroyables pour les enfants hospitalisés.</p>
-                        <p class="card-text"><small class="text-muted">Publié le 15 Juin 2024</small></p>
-                        <a href="https://www.lesblousesroses.asso.fr/fr/actualites/quand-les-supers-heros-au-grand-coeur-rencontrent-les-blouses-roses" class="btn btn-rose mt-2">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <?= htmlspecialchars($actu['titre']) ?>
+                            </h5>
 
-            <div class="col d-flex">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top-placeholder"><img class="card-img-actualite" src="https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/51.jpeg"></div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Une AG 2025 sous le signe de la convivialité</h5>
-                        <p class="card-text flex-grow-1">Mercredi 21 mai, plus de 150 Blouses et Blousons Roses (présidente(e)s, vice-président(e)s, trésorier(e)s...) se sont réunis pour l'Assemblée Générale.</p>
-                        <p class="card-text"><small class="text-muted">Publié le 21 Mai 2025</small></p>
-                        <a href="https://www.lesblousesroses.asso.fr/fr/actualites/une-ag-2025-sous-le-signe-de-la-convivialite" class="btn btn-rose mt-2">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
+                            <p class="card-text flex-grow-1">
+                                <?= htmlspecialchars($actu['resume']) ?>
+                            </p>
 
-            <div class="col d-flex">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top-placeholder"><img class="card-img-actualite" src="https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/toulouse-peluche-2.jpeg"></div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Quand les animaux thérapeutiques apaisent les maux ...</h5>
-                        <p class="card-text flex-grow-1">Dans le monde des soins aux personnes âgées, l'introduction d'animaux thérapeutiques dans les EHPAD a révolutionné la manière dont le bien-être est abordé.</p>
-                        <p class="card-text"><small class="text-muted">Publié le 10 Février 2024</small></p>
-                        <a href="https://www.lesblousesroses.asso.fr/fr/actualites/quand-les-animaux-therapeutiques-apaisent-les-maux-" class="btn btn-rose mt-2">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Publié le <?= date('d/m/Y', strtotime($actu['date_publication'])) ?>
+                                </small>
+                            </p>
 
-            <div class="col d-flex">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top-placeholder"><img class="card-img-actualite" src="https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/affiche-carrefour-2024.png"></div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">La journée CARREFOUR au profit des Blouses Roses</h5>
-                        <p class="card-text flex-grow-1">Partenaire fidèle depuis plus de 10 ans, cette année encore, les magasins Carrefour ont ouvert leurs portes aux Blouses et Blousons Roses pour une journée de collecte.</p>
-                        <p class="card-text"><small class="text-muted">Publié le 05 Avril 2024</small></p>
-                        <a href="https://www.lesblousesroses.asso.fr/fr/actualites/la-journee-carrefour-au-profit-des-blouses-roses" class="btn btn-rose mt-2">Lire la suite</a>
+                            <a href="<?= htmlspecialchars($actu['lien']) ?>"
+                               class="btn btn-rose mt-2"
+                               target="_blank">
+                                Lire la suite
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
 
-            <div class="col d-flex">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-img-top-placeholder"><img class="card-img-actualite" src="https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/voeux---copie.jpeg"></div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Bonne année de la part des 4 400 Blouses Roses</h5>
-                        <p class="card-text flex-grow-1">Toute l'équipe des Blouses Roses vous souhaite une merveilleuse année !</p>
-                        <p class="card-text"><small class="text-muted">Publié le 01 Janvier 2025</small></p>
-                        <a href="https://www.lesblousesroses.asso.fr/fr/actualites/bonne-annee-de-la-part-des-4-400-blouses-roses" class="btn btn-rose mt-2">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
-            
         </div>
-        
+
         <nav aria-label="Page navigation" class="mt-5">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link">Précédent</a>
+
+                <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>">Précédent</a>
                 </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Suivant</a>
+
+                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>">
+                            <?= $i ?>
+                        </a>
+                    </li>
+                <?php endfor; ?>
+
+                <li class="page-item <?= $page >= $pages ? 'disabled' : '' ?>">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>">Suivant</a>
                 </li>
+
             </ul>
         </nav>
 
