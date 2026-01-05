@@ -251,7 +251,14 @@ CREATE TABLE Utilisateur (
 );
 
 
-
+CREATE TABLE Actualite (
+                           id_actualite INT AUTO_INCREMENT PRIMARY KEY,
+                           titre VARCHAR(255) NOT NULL,
+                           resume TEXT NOT NULL,
+                           image_url VARCHAR(255),
+                           lien VARCHAR(255),
+                           date_publication DATE
+);
 
 
 -- ===============================
@@ -403,4 +410,20 @@ VALUES
         '44000',
         4
     );
+
+--Actualitées
+INSERT INTO Actualite (titre, resume, image_url, lien, date_publication) VALUES
+                                                                             ('Des jeux XXL pour nos bénéficiaires', 'Grâce à la Fondation MMA Solidarité, les 85 comités Blouses Roses sont désormais équipés de jeux XXL pour leurs interventions auprès des perso…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/remerciement-mma.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/des-jeux-xxl-pour-nos-beneficiaires', NULL),
+                                                                             ('ENTENDRE, un partenaire fidèle', 'Depuis 2021, le groupement des audioprothésistes ENTENDRE soutient notre association :
+Formations des Blouses Roses : plus de 3 800 bénévoles ont p…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/remerciement-entreprises2.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/entendre-un-partenaire-fidele', NULL),
+                                                                             ('Une nouvelle antenne Blouse Rose à Charleville-Mézières', 'Bienvenu au futur comité de Charleville-Mézières !!
+Le 2 juin 2025, le CH Nord Ardennes et Les Blouses Roses s''engageaient ensemble pour le bien-ê…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/charleville-meziere-juillet.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/une-nouvelle-antenne-blouse-rose-a-charleville-mezieres', NULL),
+                                                                             ('Quand les Supers Héros au Grand Cœur rencontrent Les Blouses Roses', 'Quand les Supers Héros au Grand Coeur s’associent avec Les Blouses Roses de Toulouse et de Perpignan, ça donne des journées incroyables pour les …', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/toulouse-super-heros-grand-coeur-juin.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/quand-les-supers-heros-au-grand-coeur-rencontrent-les-blouses-roses', NULL),
+                                                                             ('Une AG 2025 sous le signe de la convivialité', 'Mercredi 21 mai, plus de 150 Blouses et Blousons Roses (présidente(e)s, vice-président(e)s, trésorier(e)s, délégués régionaux, membres du CA) …', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/51.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/une-ag-2025-sous-le-signe-de-la-convivialite', NULL),
+                                                                             ('Bonne année de la part des 4 400 Blouses Roses', '', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/voeux---copie.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/bonne-annee-de-la-part-des-4-400-blouses-roses', NULL),
+                                                                             ('Quand les animaux thérapeutiques apaisent les maux ...', 'Dans le monde des soins aux personnes âgées, l''introduction d''animaux thérapeutiques dans les EHPAD a révolutionné la manière dont le bien-être…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/toulouse-peluche-2.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/quand-les-animaux-therapeutiques-apaisent-les-maux-', NULL),
+                                                                             ('Les délégués régionaux Blouses Roses', 'Lors des différentes JER, Journée d''Etudes Régionale, les 85 comités Blouses Roses ont élus ou réélus leurs délégués régionaux !
+Leur rôle…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/dr-oct-2024.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/les-delegues-regionaux-blouses-roses', NULL),
+                                                                             ('La journée CARREFOUR au profit des Blouses Roses', 'Partenaire fidèle depuis plus de 10 ans, cette année encore, les magasins Carrefour ont ouvert leurs portes aux Blouses et Blousons Roses pour une j…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/affiche-carrefour-2024.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/la-journee-carrefour-au-profit-des-blouses-roses', NULL),
+                                                                             ('Reportage France 3 sur les Blouses Roses de Lille', 'France 3 Nord Pas de Calais a tourné dans le service Hôpital de Jour de l''hôpital Jeanne de Flandre CHU de Lille quelques images au sein des chambr…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/lille-france-3ici.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/reportage-france-3-sur-les-blouses-roses-de-lille', NULL);
 
