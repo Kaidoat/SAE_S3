@@ -411,7 +411,8 @@ VALUES
         4
     );
 
---Actualitées
+/*--Actualitées*/
+
 INSERT INTO Actualite (titre, resume, image_url, lien, date_publication) VALUES
                                                                              ('Des jeux XXL pour nos bénéficiaires', 'Grâce à la Fondation MMA Solidarité, les 85 comités Blouses Roses sont désormais équipés de jeux XXL pour leurs interventions auprès des perso…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/remerciement-mma.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/des-jeux-xxl-pour-nos-beneficiaires', NULL),
                                                                              ('ENTENDRE, un partenaire fidèle', 'Depuis 2021, le groupement des audioprothésistes ENTENDRE soutient notre association :
@@ -426,4 +427,34 @@ Le 2 juin 2025, le CH Nord Ardennes et Les Blouses Roses s''engageaient ensemble
 Leur rôle…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/dr-oct-2024.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/les-delegues-regionaux-blouses-roses', NULL),
                                                                              ('La journée CARREFOUR au profit des Blouses Roses', 'Partenaire fidèle depuis plus de 10 ans, cette année encore, les magasins Carrefour ont ouvert leurs portes aux Blouses et Blousons Roses pour une j…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/affiche-carrefour-2024.png', 'https://www.lesblousesroses.asso.fr/fr/actualites/la-journee-carrefour-au-profit-des-blouses-roses', NULL),
                                                                              ('Reportage France 3 sur les Blouses Roses de Lille', 'France 3 Nord Pas de Calais a tourné dans le service Hôpital de Jour de l''hôpital Jeanne de Flandre CHU de Lille quelques images au sein des chambr…', 'https://www.lesblousesroses.asso.fr/mediacenter/uploads/m/lille-france-3ici.jpeg', 'https://www.lesblousesroses.asso.fr/fr/actualites/reportage-france-3-sur-les-blouses-roses-de-lille', NULL);
+ALTER TABLE Subvention
+    ADD statut ENUM('en attente','acceptée','refusée') DEFAULT 'en attente',
+ADD date_reponse DATE,
+ADD montant_demande DECIMAL(10,2);
 
+ALTER TABLE Donateur
+    ADD email VARCHAR(150) NOT NULL,
+ADD UNIQUE (email);
+
+
+INSERT INTO Donateur (nom, prenom, email, mdp_compte, type_donateur)
+VALUES
+    ('Dupont', 'Marie', 'marie.dupont@mail.com', 'mdp123', 'particulier'),
+    ('Lemoine', 'Paul', 'paul.lemoine@mail.com', 'secret456', 'particulier'),
+    ('Rossi', 'Clara', 'clara.rossi@mail.com', 'azerty', 'particulier');
+
+INSERT INTO Donateur (nom, prenom, email, mdp_compte, type_donateur)
+VALUES
+    ('Société ABC', 'Contact', 'contact@abc.fr', 'entreprise', 'entreprise');
+
+INSERT INTO Don (montant, date_don, type_don, id_donateur)
+VALUES
+    (25.00, '2025-01-10', 'Carte bancaire', 1),
+    (40.00, '2025-03-15', 'Prélèvement', 1);
+INSERT INTO Don (montant, date_don, type_don, id_donateur)
+VALUES
+    (15.00, '2025-02-01', 'Chèque', 2);
+INSERT INTO Don (montant, date_don, type_don, id_donateur)
+VALUES
+    (60.00, '2025-04-05', 'Carte bancaire', 3),
+    (20.00, '2025-05-01', 'Carte bancaire', 3);
