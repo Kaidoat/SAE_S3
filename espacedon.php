@@ -264,6 +264,26 @@ if ($connecte) {
             <!-- ===== MON COMPTE ===== -->
             <div class="tab-pane fade" id="compte">
                 <div class="card p-3">
+                    <?php if (isset($_GET['pwd_success'])): ?>
+    <div class="alert alert-success">
+        ✅ Votre mot de passe a été modifié avec succès
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_GET['pwd_error'])): ?>
+    <div class="alert alert-danger">
+        <?php
+        if ($_GET['pwd_error'] === 'wrong') {
+            echo "❌ Mot de passe actuel incorrect";
+        } elseif ($_GET['pwd_error'] === 'confirm') {
+            echo "❌ Les nouveaux mots de passe ne correspondent pas";
+        } else {
+            echo "❌ Tous les champs sont obligatoires";
+        }
+        ?>
+    </div>
+<?php endif; ?>
+
                     <h5 class="text-rose">Changer mon mot de passe</h5>
                     <form method="POST" action="back/update-password.php">
                         <input type="password" name="old" class="form-control mb-2" placeholder="Mot de passe actuel">
