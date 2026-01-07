@@ -12,11 +12,17 @@ $pages = ceil($total / $parPage);
 
 // Récupération des actus
 $stmt = $pdo->prepare("
-    SELECT *
-    FROM Actualite
-    ORDER BY date_publication DESC
+    SELECT 
+        a.*,
+        m.titre AS mission_titre,
+        e.nom AS evenement_nom
+    FROM Actualite a
+    LEFT JOIN Mission m ON a.id_mission = m.id_mission
+    LEFT JOIN Evenement e ON a.id_evenement = e.id_evenement
+    ORDER BY a.date_publication DESC
     LIMIT :limit OFFSET :offset
 ");
+
 $stmt->bindValue(':limit', $parPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
@@ -59,6 +65,24 @@ $actus = $stmt->fetchAll();
                         </div>
 
                         <div class="card-body d-flex flex-column">
+                            <?php if (!empty($actu['mission_titre']) || !empty($actu['evenement_nom'])): ?>
+                                <div class="mb-2">
+                                    <?php if (!empty($actu['mission_titre'])): ?>
+                                        <span class="badge bg-info text-dark me-1">
+                <i class="bi bi-briefcase"></i>
+                Mission : <?= htmlspecialchars($actu['mission_titre']) ?>
+            </span>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($actu['evenement_nom'])): ?>
+                                        <span class="badge bg-warning text-dark">
+                <i class="bi bi-calendar-event"></i>
+                Événement : <?= htmlspecialchars($actu['evenement_nom']) ?>
+            </span>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
                             <h5 class="card-title">
                                 <?= htmlspecialchars($actu['titre']) ?>
                             </h5>

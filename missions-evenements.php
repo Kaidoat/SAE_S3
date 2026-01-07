@@ -71,6 +71,7 @@ $evenements = $pdo->query("
                     <td><?= htmlspecialchars($m['type_mission']) ?></td>
                     <td><?= $m['nb_benevoles'] ?></td>
                     <td class="text-end">
+                        <a href="mission-detail.php?id=<?= $m['id_mission'] ?>" class="btn btn-sm btn-info">Détails</a>
                         <a href="form-mission.php?id=<?= $m['id_mission'] ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
                         <a href="supprimer-mission.php?id=<?= $m['id_mission'] ?>" class="btn btn-sm btn-outline-danger"
                            onclick="return confirm('Supprimer cette mission ?')">Supprimer</a>
@@ -106,6 +107,7 @@ $evenements = $pdo->query("
                     <td><?= htmlspecialchars($e['type_evenement']) ?></td>
                     <td><?= $e['nb_benevoles'] ?></td>
                     <td class="text-end">
+                        <a href="evenement-detail.php?id=<?= $e['id_evenement'] ?>" class="btn btn-sm btn-info">Détails</a>
                         <a href="form-evenement.php?id=<?= $e['id_evenement'] ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
                         <a href="supprimer-evenement.php?id=<?= $e['id_evenement'] ?>" class="btn btn-sm btn-outline-danger"
                            onclick="return confirm('Supprimer cet événement ?')">Supprimer</a>

@@ -441,3 +441,40 @@ fieldset {
 .sidebar a {text-decoration: none;color: #c71585;}
 .sidebar a:hover {text-decoration: underline;}
 
+/* Carte actualité : hauteur uniforme */
+.card {
+    width: 100%;
+}
+
+/* Image d'actu : hauteur fixe */
+.card-img-top-placeholder {
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-img-actualite {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Corps de la carte en flex */
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Titre : hauteur minimale */
+.card-title {
+    min-height: 3em; /* ~2 lignes */
+}
+
+/* Résumé : hauteur minimale */
+.card-text.flex-grow-1 {
+    min-height: 4.5em; /* ~3 lignes */
+}
+
+/* Bouton toujours en bas */
+.card-body a.btn {
+    margin-top: auto;
+}

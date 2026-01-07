@@ -10,6 +10,10 @@ if (!isset($_SESSION['user'])) {
 
 $message = "";
 
+// Récupération des missions et événements pour les menus déroulants
+$missions = $pdo->query("SELECT id_mission, titre FROM Mission ORDER BY date_debut DESC")->fetchAll();
+$evenements = $pdo->query("SELECT id_evenement, nom FROM Evenement ORDER BY date_event DESC")->fetchAll();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titre = $_POST['titre'];
     $resume = $_POST['resume'];
@@ -17,13 +21,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lien = $_POST['lien'];
     $date_pub = $_POST['date_publication'] ?: date('Y-m-d');
 
-    try {
-        $sql = "INSERT INTO Actualite (titre, resume, image_url, lien, date_publication) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$titre, $resume, $image_url, $lien, $date_pub]);
-        $message = "<div class='alert alert-success shadow-sm'>L'actualité a été publiée avec succès !</div>";
-    } catch (PDOException $e) {
-        $message = "<div class='alert alert-danger'>Erreur : " . $e->getMessage() . "</div>";
+    $id_mission = !empty($_POST['id_mission']) ? $_POST['id_mission'] : null;
+    $id_evenement = !empty($_POST['id_evenement']) ? $_POST['id_evenement'] : null;
+
+    // Sécurité : une actualité ne peut pas être liée aux deux
+    if ($id_mission && $id_evenement) {
+        $message = "<div class='alert alert-warning'>Veuillez sélectionner soit une mission, soit un événement (pas les deux).</div>";
+    } else {
+        try {
+            $sql = "INSERT INTO Actualite 
+                    (titre, resume, image_url, lien, date_publication, id_mission, id_evenement)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                    $titre,
+                    $resume,
+                    $image_url,
+                    $lien,
+                    $date_pub,
+                    $id_mission,
+                    $id_evenement
+            ]);
+
+            $message = "<div class='alert alert-success shadow-sm'>L'actualité a été publiée avec succès !</div>";
+        } catch (PDOException $e) {
+            $message = "<div class='alert alert-danger'>Erreur : " . $e->getMessage() . "</div>";
+        }
     }
 }
 ?>
@@ -39,63 +63,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-light">
 
 <div id="navbar-container"></div>
+
 <main id="contenu" class="container my-5">
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow border-0">
-                <div class="card-header bg-rose text-white py-3">
-                    <h4 class="mb-0"><i class="bi bi-newspaper me-2"></i> Publier une actualité</h4>
-                </div>
-                <div class="card-body p-4">
-                    <?= $message ?>
-                    <form action="" method="POST">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Titre de l'article</label>
-                            <input type="text" name="titre" class="form-control" placeholder="Ex: Grand loto de Noël" required>
-                        </div>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-rose text-white py-3">
+                        <h4 class="mb-0"><i class="bi bi-newspaper me-2"></i> Publier une actualité</h4>
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Résumé / Corps du texte</label>
-                            <textarea name="resume" class="form-control" rows="5" placeholder="Décrivez l'événement..." required></textarea>
-                        </div>
+                    <div class="card-body p-4">
+                        <?= $message ?>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold">URL de l'image</label>
-                                <input type="text" name="image_url" class="form-control" placeholder="https://exemple.com/image.jpg">
+                        <form action="" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Titre</label>
+                                <input type="text" name="titre" class="form-control" required>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold">Lien "En savoir plus"</label>
-                                <input type="text" name="lien" class="form-control" placeholder="https://google.com">
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Contenu</label>
+                                <textarea name="resume" class="form-control" rows="5" required></textarea>
                             </div>
-                        </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-bold">Date de publication</label>
-                            <input type="date" name="date_publication" class="form-control" value="<?= date('Y-m-d') ?>">
-                        </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Mission associée (optionnel)</label>
+                                    <select name="id_mission" class="form-select">
+                                        <option value="">— Aucune mission —</option>
+                                        <?php foreach ($missions as $m): ?>
+                                            <option value="<?= $m['id_mission'] ?>">
+                                                <?= htmlspecialchars($m['titre']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
 
-                        <div class="d-flex justify-content-between border-top pt-3">
-                            <a href="espace-interne.php" class="btn btn-outline-secondary">Retour</a>
-                            <button type="submit" class="btn btn-rose text-white px-4">Publier l'actualité</button>
-                        </div>
-                    </form>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Événement associé (optionnel)</label>
+                                    <select name="id_evenement" class="form-select">
+                                        <option value="">— Aucun événement —</option>
+                                        <?php foreach ($evenements as $e): ?>
+                                            <option value="<?= $e['id_evenement'] ?>">
+                                                <?= htmlspecialchars($e['nom']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Image (URL)</label>
+                                    <input type="text" name="image_url" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Lien externe</label>
+                                    <input type="text" name="lien" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Date de publication</label>
+                                <input type="date" name="date_publication" class="form-control" value="<?= date('Y-m-d') ?>">
+                            </div>
+
+                            <div class="d-flex justify-content-between border-top pt-3">
+                                <a href="espace-interne.php" class="btn btn-outline-secondary">Retour</a>
+                                <button type="submit" class="btn btn-rose text-white px-4">Publier</button>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </main>
 
 <div id="footer-container"></div>
 
-<!-- ================= JS ================= -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/footer.js"></script>
 <script src="js/interne.js"></script>
-
 
 </body>
 </html>
