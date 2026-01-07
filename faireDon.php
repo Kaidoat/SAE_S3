@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -15,26 +14,35 @@
 </head>
 <body id="top">
 
-<!-- Lien d’évitement -->
 <a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
 
-<!-- ================= HEADER ================= -->
 <div id="navbar-container"></div>
 
-<!-- ================= CONTENU PRINCIPAL ================= -->
 <main id="contenu" class="container py-5">
 
     <h1 class="section-title text-center mb-5">Je fais un don</h1>
 
+    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+        <div class="alert alert-success text-center">
+            💖 Merci pour votre don !
+            <br>
+            Votre contribution a bien été enregistrée.
+        </div>
+    <?php endif; ?>
+
     <section class="contact-section">
 
         <h2 class="h5 mb-4"><i class="bi bi-heart-fill text-rose"></i> Pourquoi nous donner</h2>
-        <p>Vos soutiens permettent aux Blouses Roses d’acheter le matériel nécessaire aux animations, de créer de nouveaux comités, de recruter et de former toujours plus de bénévoles pour embellir la vie des enfants et personnes âgées hospitalisées ou en Ehpad.</p>
+        <p>
+            Vos soutiens permettent aux Blouses Roses d’acheter le matériel nécessaire aux animations,
+            de créer de nouveaux comités, de recruter et de former toujours plus de bénévoles.
+        </p>
 
         <hr class="my-4">
 
-        <!-- Type de don -->
-        <form id="donForm" class="benevole-form">
+        <!-- FORMULAIRE DE DON -->
+        <form id="donForm" class="benevole-form" method="POST" action="back/traitement-don.php">
+
             <div class="row g-4">
 
                 <!-- Colonne gauche -->
@@ -43,97 +51,118 @@
                         <legend>Je donne <strong>UNE FOIS</strong></legend>
                         <div class="mb-2">
                             <label><input type="radio" name="don_unique" value="35"> 35 €</label>
-                            <label><input type="radio" name="don_unique" value="50" class="ms-3"> 50 €</label>
-                            <label><input type="radio" name="don_unique" value="80" class="ms-3"> 80 €</label>
-                            <label><input type="radio" name="don_unique" value="120" class="ms-3"> 120 €</label>
+                            <label class="ms-3"><input type="radio" name="don_unique" value="50"> 50 €</label>
+                            <label class="ms-3"><input type="radio" name="don_unique" value="80"> 80 €</label>
+                            <label class="ms-3"><input type="radio" name="don_unique" value="120"> 120 €</label>
                         </div>
-                        <label for="autreMontantUnique" class="form-label mt-2">Autre montant</label>
-                        <input type="number" id="autreMontantUnique" name="autreMontantUnique" placeholder="€" min="1">
+                        <label class="form-label mt-2">Autre montant</label>
+                        <input type="number" name="autreMontantUnique" placeholder="€" min="1">
                     </fieldset>
 
                     <fieldset class="mt-4">
                         <legend>Je donne <strong>TOUS LES MOIS</strong></legend>
                         <div class="mb-2">
                             <label><input type="radio" name="don_mensuel" value="10"> 10 €</label>
-                            <label><input type="radio" name="don_mensuel" value="15" class="ms-3"> 15 €</label>
-                            <label><input type="radio" name="don_mensuel" value="20" class="ms-3"> 20 €</label>
-                            <label><input type="radio" name="don_mensuel" value="25" class="ms-3"> 25 €</label>
+                            <label class="ms-3"><input type="radio" name="don_mensuel" value="15"> 15 €</label>
+                            <label class="ms-3"><input type="radio" name="don_mensuel" value="20"> 20 €</label>
+                            <label class="ms-3"><input type="radio" name="don_mensuel" value="25"> 25 €</label>
                         </div>
-                        <label for="autreMontantMensuel" class="form-label mt-2">Autre montant</label>
-                        <input type="number" id="autreMontantMensuel" name="autreMontantMensuel" placeholder="€" min="1">
+                        <label class="form-label mt-2">Autre montant</label>
+                        <input type="number" name="autreMontantMensuel" placeholder="€" min="1">
                     </fieldset>
 
-                    <div class="alert alert-light border-0 mt-4 small" style="color:#555;">
-                        Si vous êtes imposable, après déduction fiscale, <strong>votre don ne vous coûtera que 34 % de la somme versée</strong> (66 % du montant du don est déductible de vos impôts à hauteur de 20 % du revenu imposable).
+                    <div class="alert alert-light border-0 mt-4 small">
+                        Si vous êtes imposable, après déduction fiscale,
+                        <strong>votre don ne vous coûtera que 34 %</strong>.
                     </div>
                 </div>
 
                 <!-- Colonne droite -->
                 <div class="col-md-6">
                     <div class="p-3 border rounded-4 bg-white shadow-sm mb-4">
-                        <p class="mb-2"><i class="bi bi-gift text-rose"></i> En donnant 50 €, j’offre une après-midi d’activités.</p>
-                        <p class="mb-2">En donnant 80 €, j’offre deux jeux de société adaptés aux enfants et personnes âgées.</p>
-                        <p class="mb-0">En donnant 120 €, j’offre une journée de formation à un(e) bénévole.</p>
+                        <p class="mb-2"><i class="bi bi-gift text-rose"></i> 50 € = une après-midi d’activités</p>
+                        <p class="mb-2">80 € = deux jeux de société</p>
+                        <p class="mb-0">120 € = une journée de formation bénévole</p>
                     </div>
 
                     <div class="row g-2">
                         <div class="col-md-6">
-                            <label for="nom">Nom *</label>
-                            <input type="text" id="nom" name="nom" required>
+                            <label>Nom *</label>
+                            <input type="text" name="nom" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="prenom">Prénom *</label>
-                            <input type="text" id="prenom" name="prenom" required>
+                            <label>Prénom *</label>
+                            <input type="text" name="prenom" required>
                         </div>
                     </div>
 
-                    <label for="email" class="mt-2">E-mail *</label>
-                    <input type="email" id="email" name="email" required>
+                    <label class="mt-2">E-mail *</label>
+                    <input type="email" name="email" required>
 
-                    <label for="adresse" class="mt-2">Adresse *</label>
-                    <input type="text" id="adresse" name="adresse" required>
+                    <label class="mt-2">Adresse *</label>
+                    <input type="text" name="adresse" required>
 
                     <div class="row g-2 mt-2">
                         <div class="col-md-4">
-                            <label for="cp">CP *</label>
-                            <input type="text" id="cp" name="cp" required pattern="[0-9]{5}">
+                            <label>CP *</label>
+                            <input type="text" name="cp" pattern="[0-9]{5}" required>
                         </div>
                         <div class="col-md-8">
-                            <label for="ville">Ville *</label>
-                            <input type="text" id="ville" name="ville" required>
+                            <label>Ville *</label>
+                            <input type="text" name="ville" required>
                         </div>
                     </div>
 
-                    <label for="telephone" class="mt-2">Téléphone</label>
-                    <input type="tel" id="telephone" name="telephone" placeholder="06 00 00 00 00">
+                    <label class="mt-2">Téléphone</label>
+                    <input type="tel" name="telephone">
                 </div>
             </div>
 
+            <!-- champ caché pour le mode de paiement -->
+            <input type="hidden" name="mode_paiement" id="mode_paiement">
 
             <!-- Boutons de paiement -->
             <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-                <button type="button" class="btn-submit" style="background-color:#9e9e9e;">Validez et procédez au paiement par<br><strong>CARTE BANCAIRE</strong></button>
-                <button type="button" class="btn-submit" style="background-color:#b3a180;">Validez et procédez au paiement par<br><strong>CHÈQUE</strong></button>
-                <button type="button" class="btn-submit" style="background-color:#c9a762;">Validez et procédez au paiement par<br><strong>PRÉLÈVEMENT</strong></button>
+                <button type="submit" class="btn-submit"
+                        style="background-color:#9e9e9e;"
+                        onclick="setModePaiement('Carte bancaire')">
+                    Validez et procédez au paiement par<br><strong>CARTE BANCAIRE</strong>
+                </button>
+
+                <button type="submit" class="btn-submit"
+                        style="background-color:#b3a180;"
+                        onclick="setModePaiement('Chèque')">
+                    Validez et procédez au paiement par<br><strong>CHÈQUE</strong>
+                </button>
+
+                <button type="submit" class="btn-submit"
+                        style="background-color:#c9a762;"
+                        onclick="setModePaiement('Prélèvement')">
+                    Validez et procédez au paiement par<br><strong>PRÉLÈVEMENT</strong>
+                </button>
             </div>
 
         </form>
     </section>
 </main>
 
-<!-- ================= FOOTER ================= -->
 <div id="footer-container"></div>
 
-<!-- ================= BOUTON RETOUR HAUT ================= -->
-<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3" tabindex="-1" aria-label="Revenir en haut">
+<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3">
     <i class="bi bi-arrow-up"></i>
 </a>
 
-<!-- ================= JS ================= -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/Search.js"></script>
 <script src="js/footer.js"></script>
+
+<script>
+    function setModePaiement(mode) {
+        document.getElementById('mode_paiement').value = mode;
+    }
+</script>
 
 </body>
 </html>
