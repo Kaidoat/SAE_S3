@@ -105,6 +105,14 @@ $user_role = $_SESSION['role'] ?? 'benevole';
                                     <i class="bi bi-newspaper me-2"></i> Ajouter une actualité
                                 </a>
                             </div>
+
+                            <div class="col-md-6">
+                                <a href="TableauDeBord.php" class="btn btn-outline-rose w-100 py-3">
+                                    <i class="bi bi-bar-chart-fill me-2"></i> Voir le tableau de bord de l’association
+                                </a>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
