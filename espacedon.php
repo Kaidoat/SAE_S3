@@ -1,286 +1,315 @@
+<?php
+session_start();
+require_once __DIR__ . '/config/db.php';
 
+$connecte = isset($_SESSION['donateur_id']);
+$donateur = null;
+$totalDons = 0;
+$dons = [];
+$stats = [];
+$actus = [];
+
+if ($connecte) {
+
+    $idDonateur = $_SESSION['donateur_id'];
+
+    /* ===== TOTAL DES DONS ===== */
+    $stmt = $pdo->prepare("
+        SELECT COALESCE(SUM(montant),0)
+        FROM Don
+        WHERE id_donateur = ?
+    ");
+    $stmt->execute([$idDonateur]);
+    $totalDons = $stmt->fetchColumn();
+
+    /* ===== HISTORIQUE ===== */
+    $stmt = $pdo->prepare("
+        SELECT date_don, montant, type_don
+        FROM Don
+        WHERE id_donateur = ?
+        ORDER BY date_don DESC
+    ");
+    $stmt->execute([$idDonateur]);
+    $dons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    /* ===== STATS PAR MOIS ===== */
+    $stmt = $pdo->prepare("
+        SELECT MONTH(date_don) AS mois, SUM(montant) AS total
+        FROM Don
+        WHERE id_donateur = ?
+        GROUP BY MONTH(date_don)
+    ");
+    $stmt->execute([$idDonateur]);
+    $stats = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+
+    /* ===== ACTUALITÉS ===== */
+    $actus = $pdo->query("
+        SELECT titre, resume, lien
+        FROM Actualite
+        ORDER BY id_actualite DESC
+        LIMIT 3
+    ")->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Les Blouses Roses — Accueil</title>
+    <title>Espace Donateur</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Feuille de style personnalisée -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="top">
 
-<!-- Lien d’évitement -->
-<a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
+<body>
 
-<!-- ================= HEADER ================= -->
 <div id="navbar-container"></div>
 
-<main id="contenu">
+<main class="container my-5">
 
-    <!-- =================== SECTION CONNEXION =================== -->
-    <section class="contact-section" id="connexion-donateur">
-        <h2>Espace Donateur</h2>
-        <p class="text-center text-muted mb-4">Connectez-vous pour accéder à votre espace 💖</p>
+    <?php if (!$connecte): ?>
 
-        <div class="container d-flex justify-content-center">
-            <div class="card shadow-lg p-4 rounded-4" style="max-width: 420px; width: 100%;">
+        <!-- ================= CONNEXION ================= -->
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <h3 class="text-center text-rose mb-3">Espace Donateur</h3>
 
-                <!-- 🔹 Formulaire de connexion -->
-                <form id="loginForm" novalidate>
-                    <div class="mb-3">
-                        <label for="identifiant" class="form-label">Identifiant</label>
-                        <input type="text" class="form-control" id="identifiant" placeholder="Votre identifiant" required>
-                    </div>
+                    <form method="POST" action="back/login-donateur.php">
+                        <input type="email" name="email" class="form-control mb-2" placeholder="E-mail" required>
+                        <input type="password" name="motdepasse" class="form-control mb-3" placeholder="Mot de passe" required>
 
-                    <div class="mb-2">
-                        <label for="motdepasse" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="motdepasse" placeholder="Votre mot de passe" required>
-                    </div>
+                        <?php if (isset($_GET['error'])): ?>
+                            <p class="text-danger text-center">Identifiants incorrects</p>
+                        <?php endif; ?>
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <a href="#" id="forgotLink" class="text-decoration-none small text-rose">Mot de passe oublié ?</a>
-                        <a href="#" id="createLink" class="text-decoration-none small text-rose">Créer un compte</a>
-                    </div>
+                        <button class="btn btn-rose w-100">Se connecter</button>
+                    </form>
 
-                    <button type="submit" id="btnLogin" class="btn btn-rose w-100">Se connecter</button>
-                    <p id="errorMessage" class="text-danger text-center fw-semibold mt-3 d-none"></p>
-                </form>
+                    <hr>
 
-                <!-- 🔹 Formulaire d'inscription (caché au départ) -->
-                <form id="registerForm" class="d-none" novalidate>
-                    <h5 class="text-center mb-3 text-rose">Créer un compte</h5>
-
-                    <div class="mb-3">
-                        <label for="newIdentifiant" class="form-label">Identifiant</label>
-                        <input type="text" class="form-control" id="newIdentifiant" placeholder="Choisissez un identifiant" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="newMotdepasse" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="newMotdepasse" placeholder="Choisissez un mot de passe" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="confirmMotdepasse" class="form-label">Confirmer le mot de passe</label>
-                        <input type="password" class="form-control" id="confirmMotdepasse" placeholder="Retapez votre mot de passe" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="newContact" class="form-label">E-mail ou numéro (pour notifications)</label>
-                        <input type="text" class="form-control" id="newContact" placeholder="ex : mon@mail.com ou 06xxxxxxx" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-rose w-100">Créer le compte</button>
-                    <p id="registerMessage" class="text-center fw-semibold mt-3"></p>
-
-                    <p class="text-center mt-3">
-                        <a href="#" id="backToLogin" class="text-decoration-none small text-rose">⬅️ Retour à la connexion</a>
+                    <p class="text-center">
+                        <a href="#" id="showRegister">Créer un compte</a>
                     </p>
-                </form>
 
+                    <!-- ===== INSCRIPTION ===== -->
+                    <form method="POST"
+                          action="back/register-donateur.php"
+                          id="registerForm"
+                          style="display:none;">
+
+                        <input type="text"
+                               name="nom"
+                               class="form-control mb-2"
+                               placeholder="Nom"
+                               required>
+
+                        <input type="text"
+                               name="prenom"
+                               class="form-control mb-2"
+                               placeholder="Prénom"
+                               required>
+
+                        <input type="email"
+                               name="email"
+                               class="form-control mb-2"
+                               placeholder="E-mail"
+                               required>
+
+                        <input type="password"
+                               name="motdepasse"
+                               class="form-control mb-2"
+                               placeholder="Mot de passe"
+                               required>
+
+                        <input type="password"
+                               name="confirm_motdepasse"
+                               class="form-control mb-3"
+                               placeholder="Confirmer le mot de passe"
+                               required>
+
+                        <?php if (isset($_GET['register_error'])): ?>
+                            <p class="text-danger text-center">
+                                <?php
+                                if ($_GET['register_error'] === 'exists') {
+                                    echo "Cet e-mail existe déjà";
+                                } else {
+                                    echo "Erreur lors de l'inscription";
+                                }
+                                ?>
+                            </p>
+                        <?php endif; ?>
+
+                        <button class="btn btn-success w-100">
+                            Créer mon compte
+                        </button>
+                    </form>
+
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- =================== SECTION ESPACE DONATEUR =================== -->
-    <section id="content-donateur" class="container d-none my-5">
+    <?php else: ?>
 
-        <div class="text-center mb-4">
-            <h2 class="section-title">Bienvenue <span id="userIdentifiant"></span> 🌷</h2>
-            <p class="text-muted">Merci pour ta fidélité et ton soutien précieux aux Blouses Roses 💖</p>
-        </div>
+        <!-- ================= DASHBOARD ================= -->
+        <h1 class="text-center text-rose mb-4">
+            Bienvenue <?= htmlspecialchars($_SESSION['donateur_prenom']) ?> 🌷
+        </h1>
 
-        <!-- Onglets -->
-        <ul class="nav nav-pills justify-content-center gap-2 mb-4" id="donateurTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="tab-dashboard" data-bs-toggle="pill" data-bs-target="#pane-dashboard" type="button" role="tab">Tableau de bord</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-histo" data-bs-toggle="pill" data-bs-target="#pane-histo" type="button" role="tab">Historique des dons</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-msg" data-bs-toggle="pill" data-bs-target="#pane-msg" type="button" role="tab">Messagerie</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-news" data-bs-toggle="pill" data-bs-target="#pane-news" type="button" role="tab">Actus personnalisées</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-compte" data-bs-toggle="pill" data-bs-target="#pane-compte" type="button" role="tab">Mon compte</button>
-            </li>
+        <ul class="nav nav-pills justify-content-center mb-4">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#dashboard">Tableau de bord</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#historique">Historique</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#messagerie">Messagerie</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#actus">Actus</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#compte">Mon compte</a></li>
         </ul>
 
         <div class="tab-content">
 
-            <!-- === Tableau de bord === -->
-            <div class="tab-pane fade show active" id="pane-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
-                <div class="row justify-content-center mb-4">
-                    <div class="col-md-8">
-                        <div class="card p-4 shadow-sm">
-                            <h5 class="text-center text-rose mb-3">Évolution de vos dons par mois</h5>
-                            <canvas id="donChart" height="150"></canvas>
-                        </div>
-                    </div>
+            <!-- ===== TABLEAU DE BORD ===== -->
+            <div class="tab-pane fade show active" id="dashboard">
+
+                <div class="card p-4 mb-4">
+                    <h5 class="text-center text-rose">Évolution de vos dons par mois</h5>
+                    <canvas id="donChart"></canvas>
                 </div>
 
-                <div class="row mt-4 text-center">
-                    <div class="col-md-4 mb-3">
-                        <div class="card p-3 shadow-sm">
-                            <h5 class="text-rose">Montant total de vos dons</h5>
-                            <p class="fs-4 fw-bold text-success" id="totalDons">0 €</p>
-                            <button id="btnReceipt" class="btn btn-outline-rose btn-sm mt-2">📄 Imprimer mon reçu fiscal</button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center">
+                            <h5 class="text-rose">Total de vos dons</h5>
+                            <p class="fs-3 text-success"><?= number_format($totalDons,2) ?> €</p>
+                            <button onclick="window.print()" class="btn btn-outline-rose btn-sm">
+                                📄 Imprimer mon reçu fiscal
+                            </button>
                         </div>
                     </div>
 
-                    <div class="col-md-8 mb-3" id="sectionGenerosite">
-                        <div class="card p-3 shadow-sm">
-                            <h5 class="text-rose">Grâce à votre générosité 🌼</h5>
-                            <ul class="list-unstyled text-muted mb-0" id="impactList">
-                                <li>🎈 Une sortie récréative pour les enfants hospitalisés</li>
-                                <li>🧸 Du matériel d’activités pour les services pédiatriques</li>
-                                <li>💪 Des ateliers adaptés pour personnes en situation de handicap</li>
+                    <div class="col-md-8">
+                        <div class="card p-3">
+                            <h5 class="text-rose">Grâce à votre générosité 💖</h5>
+                            <ul>
+                                <li>🎈 Animations hospitalières</li>
+                                <li>🧸 Jeux et matériel éducatif</li>
+                                <li>💪 Ateliers adaptés</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center mt-4">
-                    <button id="btnReDon" class="btn btn-rose btn-lg">💝 Faire un nouveau don</button>
-                    <p class="mt-3"><button id="btnLogout" class="btn btn-outline-danger btn-sm">Se déconnecter</button></p>
+                    <a href="faireDon.php" class="btn btn-rose btn-lg">💝 Faire un don</a>
+                    <br><br>
+                    <a href="back/logout-donateur.php" class="btn btn-outline-danger btn-sm">Se déconnecter</a>
                 </div>
             </div>
 
-            <!-- === Historique des dons === -->
-            <div class="tab-pane fade" id="pane-histo" role="tabpanel" aria-labelledby="tab-histo">
-                <div class="card p-3 shadow-sm">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
-                        <h5 class="mb-0 text-rose">Historique détaillé</h5>
-                        <div class="d-flex gap-2">
-                            <select id="filtreMode" class="form-select form-select-sm" style="width:180px">
-                                <option value="">Tous les modes</option>
-                                <option>Carte bancaire</option>
-                                <option>Virement</option>
-                                <option>Chèque</option>
-                                <option>Espèces</option>
-                            </select>
-                            <input id="filtreDate" type="month" class="form-control form-control-sm" />
-                        </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead>
+            <!-- ===== HISTORIQUE ===== -->
+            <div class="tab-pane fade" id="historique">
+                <div class="card p-3">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Montant</th>
+                            <th>Mode</th>
+                            <th>Remerciement</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dons as $don): ?>
                             <tr>
-                                <th>Date</th>
-                                <th>Montant</th>
-                                <th>Mode</th>
-                                <th>Remerciement</th>
+                                <td><?= date('d/m/Y', strtotime($don['date_don'])) ?></td>
+                                <td class="text-success"><?= number_format($don['montant'],2) ?> €</td>
+                                <td><?= htmlspecialchars($don['type_don']) ?></td>
+                                <td>🙏 Merci pour votre générosité</td>
                             </tr>
-                            </thead>
-                            <tbody id="tbodyHistorique"></tbody>
-                        </table>
-                    </div>
-                    <p class="text-end fw-semibold">Total période : <span id="totalPeriode">0 €</span></p>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- === Messagerie === -->
-            <div class="tab-pane fade" id="pane-msg" role="tabpanel" aria-labelledby="tab-msg">
-                <div class="row g-3">
-                    <div class="col-md-8">
-                        <div class="card p-3 shadow-sm h-100">
-                            <div id="thread" class="d-flex flex-column gap-2" style="min-height:280px;"></div>
-                            <form id="msgForm" class="mt-3">
-                                <div class="input-group">
-                                    <input id="msgInput" class="form-control" placeholder="Écrire un message à l'association…">
-                                    <button class="btn btn-rose" type="submit">Envoyer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card p-3 shadow-sm">
-                            <h6 class="text-rose">Infos utiles</h6>
-                            <ul class="small text-muted mb-0">
-                                <li>Réponse sous 24–48h ouvrées</li>
-                                <li>Urgent ? 01 46 22 82 32</li>
-                                <li>Mail : siegenational@lesblousesroses.asso.fr</li>
-                            </ul>
-                        </div>
-                    </div>
+            <!-- ===== MESSAGERIE ===== -->
+            <div class="tab-pane fade" id="messagerie">
+                <div class="card p-3">
+                    <textarea class="form-control mb-2" placeholder="Écrire un message..."></textarea>
+                    <button class="btn btn-rose btn-sm">Envoyer</button>
+                    <hr>
+                    <small>
+                        📧 siegenational@lesblousesroses.asso.fr<br>
+                        📞 01 46 22 82 32
+                    </small>
                 </div>
             </div>
 
-            <!-- === Actus personnalisées (légères) === -->
-            <div class="tab-pane fade" id="pane-news" role="tabpanel" aria-labelledby="tab-news">
-                <div class="row" id="newsCards"></div>
+            <!-- ===== ACTUS ===== -->
+            <div class="tab-pane fade" id="actus">
+                <div class="row">
+                    <?php foreach ($actus as $a): ?>
+                        <div class="col-md-4">
+                            <div class="card p-3 h-100">
+                                <h5 class="text-rose"><?= htmlspecialchars($a['titre']) ?></h5>
+                                <p><?= htmlspecialchars($a['resume']) ?></p>
+                                <a href="<?= $a['lien'] ?>" target="_blank" class="btn btn-outline-rose btn-sm">
+                                    Lire la suite
+                                </a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
-            <!-- === Mon compte === -->
-            <div class="tab-pane fade" id="pane-compte" role="tabpanel" aria-labelledby="tab-compte">
-                <div class="row g-3">
-                    <div class="col-lg-6">
-                        <div class="card p-3 shadow-sm">
-                            <h5 class="text-rose">Mes informations</h5>
-                            <form id="profilForm" class="mt-2">
-                                <div class="mb-2">
-                                    <label class="form-label">Contact (mail ou numéro)</label>
-                                    <input id="profilContact" class="form-control" placeholder="ex: mon@mail.com ou 06…" />
-                                </div>
-                                <button class="btn btn-rose btn-sm">Enregistrer</button>
-                                <span id="profilMsg" class="ms-2 small"></span>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="card p-3 shadow-sm">
-                            <h5 class="text-rose">Modifier mon mot de passe</h5>
-                            <form id="pwdForm" class="mt-2">
-                                <div class="mb-2">
-                                    <label class="form-label">Mot de passe actuel</label>
-                                    <input id="pwdOld" type="password" class="form-control" />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Nouveau mot de passe</label>
-                                    <input id="pwdNew" type="password" class="form-control" />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Confirmer le nouveau</label>
-                                    <input id="pwdNew2" type="password" class="form-control" />
-                                </div>
-                                <button class="btn btn-rose btn-sm">Mettre à jour</button>
-                                <span id="pwdMsg" class="ms-2 small"></span>
-                            </form>
-                        </div>
-                    </div>
+            <!-- ===== MON COMPTE ===== -->
+            <div class="tab-pane fade" id="compte">
+                <div class="card p-3">
+                    <h5 class="text-rose">Changer mon mot de passe</h5>
+                    <form method="POST" action="back/update-password.php">
+                        <input type="password" name="old" class="form-control mb-2" placeholder="Mot de passe actuel">
+                        <input type="password" name="new1" class="form-control mb-2" placeholder="Nouveau mot de passe">
+                        <input type="password" name="new2" class="form-control mb-2" placeholder="Confirmer">
+                        <button class="btn btn-rose btn-sm">Mettre à jour</button>
+                    </form>
                 </div>
             </div>
 
         </div>
-    </section>
+    <?php endif; ?>
 
 </main>
 
-
-<div id="footer-container"></div>
-
-<!-- ================= BOUTON RETOUR HAUT ================= -->
-<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3" tabindex="-1" aria-label="Revenir en haut">
-    <i class="bi bi-arrow-up"></i>
-</a>
-
-<!-- ================= JS ================= -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<?php if ($connecte): ?>
+    <script>
+        new Chart(document.getElementById('donChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'],
+                datasets: [{
+                    data: <?= json_encode(array_values($stats)) ?>,
+                    backgroundColor: '#EC1F7A'
+                }]
+            },
+            options: {
+                plugins: { legend: { display:false } },
+                scales: { y: { beginAtZero:true } }
+            }
+        });
+    </script>
+<?php endif; ?>
+<div id="footer-container"></div>
 <script src="js/navbar.js"></script>
-<script src="js/Search.js"></script>
 <script src="js/footer.js"></script>
-<script src="js/donateur.js"></script>
+<script>
+    document.getElementById("showRegister")?.addEventListener("click", e => {
+        e.preventDefault();
+        const form = document.getElementById("registerForm");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+    });
+</script>
+
 </body>
 </html>
