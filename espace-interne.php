@@ -112,6 +112,11 @@ $user_role = $_SESSION['role'] ?? 'benevole';
                                 </a>
                             </div>
 
+                            <div class="col-md-6">
+                                <a href="missions-evenements.php" class="btn btn-rose text-white w-100 py-3">
+                                    <i class="bi bi-people-fill me-2"></i> Gérer les activitées
+                                </a>
+                            </div>
 
                         </div>
                     </div>
@@ -123,9 +128,13 @@ $user_role = $_SESSION['role'] ?? 'benevole';
 
         <div class="col-lg-6">
             <div class="card shadow-sm border-0 h-100">
-                <div class="card-header bg-rose text-white fw-bold">
-                    <i class="bi bi-calendar-week me-2"></i>Mon planning
-                </div>
+                <a href="calendrier.php"
+                   class="card-header bg-rose text-white fw-bold text-decoration-none d-flex align-items-center justify-content-between">
+    <span>
+        <i class="bi bi-calendar-week me-2"></i>Mon planning
+    </span>
+                    <i class="bi bi-arrow-right-circle"></i>
+                </a>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">🩺 Atelier dessin — CHU Lille — 10 nov.</li>
@@ -174,7 +183,7 @@ $user_role = $_SESSION['role'] ?? 'benevole';
                 <div class="card-header bg-rose text-white fw-bold">
                     <i class="bi bi-person-circle me-2"></i>Mon profil
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex flex-column align-items-center justify-content-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png"
                          class="rounded-circle mb-3"
                          width="80"

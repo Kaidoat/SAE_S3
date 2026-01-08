@@ -75,8 +75,14 @@ $professions = $pdo->query("
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="container my-5">
+<body>
 
+<!-- Lien d’évitement -->
+<a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
+
+<!-- ================= HEADER ================= -->
+<div id="navbar-container"></div>
+<main id="contenu" class="container my-5">
 <h1 class="text-center mb-4">Tableau de bord de l’association</h1>
 
 <div class="row g-4 mb-4">
@@ -163,6 +169,21 @@ $professions = $pdo->query("
 <div class="text-center mt-5">
     <a href="espace-interne.php" class="btn btn-outline-secondary">← Retour</a>
 </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<div id="footer-container"></div>
+
+<!-- ================= BOUTON RETOUR HAUT ================= -->
+<a href="#top" class="btn btn-secondary back-to-top position-fixed bottom-0 end-0 m-3" tabindex="-1" aria-label="Revenir en haut">
+    <i class="bi bi-arrow-up"></i>
+</a>
+<!-- ================= JS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/Search.js"></script>
+<script src="js/footer.js"></script>
 
 <!-- Passage des données PHP vers JS -->
 <script>

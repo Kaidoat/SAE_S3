@@ -21,6 +21,7 @@ $planning = $pdo->query("
     <meta charset="utf-8">
     <title>Calendrier</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-light">
@@ -36,17 +37,27 @@ $planning = $pdo->query("
             <th>Date</th>
             <th>Type</th>
             <th>Nom</th>
+            <th>Etat</th>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($planning as $p): ?>
+        <?php
+        $today = date('Y-m-d');
+
+        foreach ($planning as $p):
+            $etat = (strtotime($p['date']) < strtotime($today))
+                    ? '<span class="badge bg-secondary">Fini</span>'
+                    : '<span class="badge bg-success">À venir</span>';
+            ?>
             <tr>
                 <td><?= date('d/m/Y', strtotime($p['date'])) ?></td>
                 <td><?= $p['type'] ?></td>
                 <td><?= htmlspecialchars($p['nom']) ?></td>
+                <td><?= $etat ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
+
     </table>
 </main>
 
