@@ -1,3 +1,4 @@
+-- DROP DATABASE IF EXISTS association;
 -- ===============================
 -- BASE DE DONNÉES
 -- ===============================
@@ -257,7 +258,9 @@ CREATE TABLE Actualite (
                            resume TEXT NOT NULL,
                            image_url VARCHAR(255),
                            lien VARCHAR(255),
-                           date_publication DATE
+                           date_publication DATE,
+                           id_mission INT NULL,
+                           id_evenement INT NULL
 );
 
 
@@ -458,3 +461,4 @@ INSERT INTO Don (montant, date_don, type_don, id_donateur)
 VALUES
     (60.00, '2025-04-05', 'Carte bancaire', 3),
     (20.00, '2025-05-01', 'Carte bancaire', 3);
+
