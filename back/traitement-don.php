@@ -47,13 +47,10 @@ if ($donateur) {
     // Mot de passe par défaut : prenom.nom (en minuscules)
     $mdp_defaut = strtolower($prenom . "." . $nom);
 
-    // On le hash (OBLIGATOIRE)
-    $mdp_hash = password_hash($mdp_defaut, PASSWORD_DEFAULT);
-
     $sql = "INSERT INTO Donateur (nom, prenom, email, type_donateur,mdp_compte)
             VALUES (?, ?, ?, 'particulier', ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nom, $prenom, $email, $mdp_hash]);
+    $stmt->execute([$nom, $prenom, $email, $mdp_defaut]);
     $id_donateur = $pdo->lastInsertId();
 }
 
@@ -66,3 +63,4 @@ $stmt->execute([$montant, $mode_paiement, $id_donateur]);
 // 6️⃣ Redirection
 header('Location: ../faireDon.php?success=1');
 exit;
+
