@@ -91,12 +91,6 @@ $actus = $stmt->fetchAll();
                                 <?= htmlspecialchars($actu['resume']) ?>
                             </p>
 
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    Publié le <?= date('d/m/Y', strtotime($actu['date_publication'])) ?>
-                                </small>
-                            </p>
-
                             <a href="<?= htmlspecialchars($actu['lien']) ?>"
                                class="btn btn-rose mt-2"
                                target="_blank">
@@ -147,4 +141,5 @@ $actus = $stmt->fetchAll();
 <script src="js/footer.js"></script>
 
 </body>
+
 </html>
